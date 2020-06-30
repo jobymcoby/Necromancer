@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     private GameObject player;
     private Vector2 moveDir;
 
+    public float health = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,12 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FindMoveDir();
+        FindPlayerDirections();
+
+        if (health < 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void FixedUpdate()
@@ -29,7 +35,7 @@ public class EnemyController : MonoBehaviour
         rb.MovePosition(rb.position + moveDir * moveSpeed * Time.deltaTime);
     }
 
-    private void FindMoveDir()
+    private void FindPlayerDirections()
     {
         // Find the vector between the enemy and player and normalize it
         moveDir = player.GetComponent<Rigidbody2D>().position - rb.position;
