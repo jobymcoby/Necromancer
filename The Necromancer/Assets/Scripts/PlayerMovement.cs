@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,22 +8,29 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f; 
     public Rigidbody2D rb;
     public Camera cam;
-    Vector2 movement;
-    Vector2 mousePosition;
+    public Vector2 movement;
+    public Vector2 mousePosition;
+    
+    public float graspingHandsRadius = 2.5f;
+    public float graspingHandsCooldown = 2.0f;
+    private float graspingHandsAttackTimer = 0.0f;
+    public GameObject graspingHandsArea;
 
-    public float raiseCorpseRadius = 2.5f;
-    private float waitTime = 2.0f;
-    private float timer = 0.0f;
+    private bool hoverCorpse = false;       //Is the mouse hovering over a corpse
 
     public float lifeDrainRadius = 2.5f;
     public float drainSpeed = 3f;
     public float drainConversion = 0.60f;
+    public float drainLife;
+    public float drainCooldown = 0.8f;
+    private float drainAttackTimer = 0.0f;
+    public GameObject drainShadow;
+    public GameObject drainOutline;
 
     public float currentHealth;
     public float maxHealth = 30f;
 
-    private EnemyController _enemyMovement;
-
+    public EnemyController _enemyMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -33,38 +41,30 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Player Input
+        // Player Input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
-
-        // Polling Left Click
-        if (Input.GetMouseButtonDown(0))
+        
+        // Grasping Hands Input
+        if (Input.GetMouseButtonDown(0) && hoverCorpse == false) 
         {
-            //Raise Corpse
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(mousePosition, raiseCorpseRadius);
-            for (int i = 0; i < colliders.Length; i++)
-            {
-                if (colliders[i].gameObject.tag == "Enemy")
-                {
-                    RaiseCorpse(colliders[i].gameObject);
-                }
-            }
+            GraspingHands(mousePosition);
         }
 
+        // Life Drain Input
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine("LifeDrain", rb.position);
+        }
+        
+        // idk about this attack
         if (Input.GetMouseButton(1))
         {
-            // Drain life
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(rb.position, lifeDrainRadius);
-            for (int i = 0; i < colliders.Length; i++)
-            {
-                if (colliders[i].gameObject.tag == "Enemy")
-                {
-                    LifeDrain(colliders[i].gameObject);
-                }
-            }
+            //Fire Bolt
         }
 
+        //Keep max health
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
@@ -76,25 +76,57 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
     }
 
-    private void RaiseCorpse(GameObject Enemy)
+    void GraspingHands(Vector2 mousePosition)
     {
-        // At level 1 raise corpse will raise grasping hand to hold the enemy in place for a set amount of time based on the enemy
-        _enemyMovement = Enemy.GetComponent<EnemyController>();
-        float prevSpeed = _enemyMovement.moveSpeed;
-        _enemyMovement.moveSpeed = 0;
+        // Cool Down Check
+        if (Time.time >= graspingHandsAttackTimer)
+        {
+            // Starts coroutine for the grasping hands animation
+            graspingHandsArea.SetActive(true);
+            // Find enemies to grapple
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(mousePosition, graspingHandsRadius);
+                for (int i = 0; i < colliders.Length; i++)
+                {
+                    if (colliders[i].gameObject.tag == "Enemy" && hoverCorpse == false)
+                    {
+                        colliders[i].gameObject.GetComponent<EnemyController>().Grappled();
+                    }
+                }
+            //Start Cool Down Timer
+            graspingHandsAttackTimer = Time.time + graspingHandsCooldown;
+        }
     }
 
-    private void LifeDrain(GameObject Enemy)
+    private IEnumerator LifeDrain(Vector2 selfPosition)
     {
-        //might want to make this a coroutine
-        _enemyMovement = Enemy.GetComponent<EnemyController>();
-        _enemyMovement.health -= drainSpeed * Time.deltaTime;
-        if (currentHealth < maxHealth)
+        drainShadow.GetComponent<SpriteRenderer>().enabled = true;
+        drainOutline.GetComponent<SpriteRenderer>().enabled = true;
+
+        while (Input.GetKey(KeyCode.Space))
         {
-            currentHealth += drainSpeed * Time.deltaTime * drainConversion;
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(selfPosition, lifeDrainRadius);
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i].gameObject.tag == "Enemy")
+                {
+                    //This should start health stealing coroutines while enemies are in the sphere
+                    drainLife += colliders[i].gameObject.GetComponent<EnemyController>().LifeDrain(drainSpeed);   
+                }
+            }
+
+            if (currentHealth < maxHealth)
+            {
+                currentHealth += drainLife * drainConversion;
+            }
+
+            yield return null;
         }
-        Debug.Log("Take Health: " + currentHealth);
-        Debug.Log(_enemyMovement.health);
+
+        drainShadow.GetComponent<SpriteRenderer>().enabled = false;
+        drainOutline.GetComponent<SpriteRenderer>().enabled = false;
+
+        yield return null;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -102,7 +134,6 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             currentHealth -= 1;
-            Debug.Log("Take Damage, Health: " + currentHealth);
         }
     }
 
@@ -110,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Raise Corpse Visual
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(mousePosition, raiseCorpseRadius);
+        Gizmos.DrawWireSphere(mousePosition, graspingHandsRadius);
         // Life Drain radius
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(rb.position, lifeDrainRadius);
