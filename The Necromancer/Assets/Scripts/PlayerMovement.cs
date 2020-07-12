@@ -19,9 +19,9 @@ public class PlayerMovement : MonoBehaviour
     private bool hoverCorpse = false;       //Is the mouse hovering over a corpse
 
     public float lifeDrainRadius = 2.5f;
-    public float drainSpeed = 3f;
+    public float drainSpeed = .01f;
     public float drainConversion = 0.60f;
-    public float drainLife;
+    public float lifeDrained;
     public float drainCooldown = 0.8f;
     private float drainAttackTimer = 0.0f;
     public GameObject drainShadow;
@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (colliders[i].gameObject.tag == "Enemy" && hoverCorpse == false)
                     {
-                        colliders[i].gameObject.GetComponent<EnemyController>().Grappled();
+                        colliders[i].gameObject.GetComponent<EnemyController>().Grappled = true;
                     }
                 }
             //Start Cool Down Timer
@@ -111,13 +111,13 @@ public class PlayerMovement : MonoBehaviour
                 if (colliders[i].gameObject.tag == "Enemy")
                 {
                     //This should start health stealing coroutines while enemies are in the sphere
-                    drainLife += colliders[i].gameObject.GetComponent<EnemyController>().LifeDrain(drainSpeed);   
+                    colliders[i].gameObject.GetComponent<EnemyController>().health.Damage(drainSpeed);   
                 }
             }
 
             if (currentHealth < maxHealth)
             {
-                currentHealth += drainLife * drainConversion;
+                currentHealth += lifeDrained * drainConversion;
             }
 
             yield return null;
@@ -145,7 +145,5 @@ public class PlayerMovement : MonoBehaviour
         // Life Drain radius
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(rb.position, lifeDrainRadius);
-
-
     }
 }

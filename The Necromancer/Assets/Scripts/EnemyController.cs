@@ -9,32 +9,55 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed = 3f;
     public float holdTime = 1f;
 
+    private bool _grappled;
+    public bool Grappled
+    {
+        set
+        {
+            if (value == _grappled)
+            {
+                return;
+            }
+            if (value && !_grappled)
+            {
+                StartCoroutine("Grapple");
+                _grappled = value;
+            }
+        }
+    }
     private GameObject player;
     private Vector2 moveDir;
 
-    public float health = 10f;
+    public HealthSystem health;
+    public HealthBar healthBar;
+
+    public float maxHealth = 10f;
+
+    private void Awake()
+    {
+        health = new HealthSystem(maxHealth);
+        player = GameObject.FindGameObjectWithTag("Player");
+        healthBar.Setup(health);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+
     }
 
     // Update is called once per frame
     void Update()
     {
         FindPlayerDirections();
-
+        Debug.Log(health.Current());
         //die
-        if (health < 0)
+        if (health.Current() == 0)
         {
             Destroy(this.gameObject);
         }
 
-        //Grappled
     }
-
-
 
     private void FixedUpdate()
     {
@@ -49,22 +72,12 @@ public class EnemyController : MonoBehaviour
         moveDir.Normalize();
     }
 
-    public void Grappled()
-    {
-        //Accessed byt player controlle to start coroutines
-        StartCoroutine("Grapple");
-    }
-
     public IEnumerator Grapple()
     {
         float prevSpeed = moveSpeed;
         moveSpeed = 0;
         yield return new WaitForSeconds(holdTime);
         moveSpeed = prevSpeed;
-    }
-
-    public float LifeDrain(float speed)
-    {
-        return health -= speed * Time.deltaTime;
+        _grappled = false;
     }
 }
