@@ -6,8 +6,10 @@ public class EnemyController : MonoBehaviour
 {
     
     public Rigidbody2D rb;
-    public float moveSpeed = 3f;
-    public float holdTime = 1f;
+    [SerializeField]
+    private float moveSpeed = 3f;
+    [SerializeField]
+    private float holdTime = 1f;
 
     private bool _grappled;
     public bool Grappled
@@ -25,13 +27,16 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
+
     private GameObject player;
     private Vector2 moveDir;
 
     public HealthSystem health;
-    public HealthBar healthBar;
+    [SerializeField]
+    private HealthBar healthBar;
 
-    public float maxHealth = 10f;
+    [SerializeField]
+    private readonly float maxHealth = 10f;
 
     private void Awake()
     {
@@ -40,23 +45,16 @@ public class EnemyController : MonoBehaviour
         healthBar.Setup(health);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
         FindPlayerDirections();
-        Debug.Log(health.Current());
+
         //die
         if (health.Current() == 0)
         {
             Destroy(this.gameObject);
         }
-
     }
 
     private void FixedUpdate()

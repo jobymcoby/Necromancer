@@ -9,16 +9,12 @@ public class HealthBar : MonoBehaviour
     public void Setup(HealthSystem healthSystem)
     {
         this.healthSystem = healthSystem;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        //maxHealth = GetComponentInParent<EnemyController>().maxHealth;
+        healthSystem.OnHealthChanged += HealthSystem_OnHealthChanged;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void HealthSystem_OnHealthChanged(object sender, System.EventArgs e)
     {
         this.transform.localScale = new Vector3(healthSystem.CurrentPercent() * 10, 1);
     }
+
 }

@@ -2,35 +2,34 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; 
     public Rigidbody2D rb;
     public Camera cam;
-    public Vector2 movement;
+    private Vector2 movement;
     public Vector2 mousePosition;
     
-    public float graspingHandsRadius = 2.5f;
+    public float graspingHandsRadius = 1f;
     public float graspingHandsCooldown = 2.0f;
     private float graspingHandsAttackTimer = 0.0f;
     public GameObject graspingHandsArea;
 
+    public GameObject lifeDrainCircle;
+
     private bool hoverCorpse = false;       //Is the mouse hovering over a corpse
 
-    public float lifeDrainRadius = 2.5f;
-    public float drainSpeed = .01f;
-    public float drainConversion = 0.60f;
-    public float lifeDrained;
-    public float drainCooldown = 0.8f;
-    private float drainAttackTimer = 0.0f;
-    public GameObject drainShadow;
-    public GameObject drainOutline;
+    private List<GameObject> enemiesDraining = new List<GameObject>();
 
-    public float currentHealth;
-    public float maxHealth = 30f;
 
-    public EnemyController _enemyMovement;
+    [SerializeField]
+    private float maxHealth = 30f;
+    private float currentHealth;
+
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,17 +46,11 @@ public class PlayerMovement : MonoBehaviour
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
         
         // Grasping Hands Input
-        if (Input.GetMouseButtonDown(0) && hoverCorpse == false) 
-        {
-            GraspingHands(mousePosition);
-        }
+        if (Input.GetMouseButtonDown(0) && hoverCorpse == false) GraspingHands(mousePosition);
 
         // Life Drain Input
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine("LifeDrain", rb.position);
-        }
-        
+        lifeDrainCircle.SetActive(Input.GetKey(KeyCode.Space));
+
         // idk about this attack
         if (Input.GetMouseButton(1))
         {
@@ -97,38 +90,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator LifeDrain(Vector2 selfPosition)
-    {
-        drainShadow.GetComponent<SpriteRenderer>().enabled = true;
-        drainOutline.GetComponent<SpriteRenderer>().enabled = true;
-
-        while (Input.GetKey(KeyCode.Space))
-        {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(selfPosition, lifeDrainRadius);
-
-            for (int i = 0; i < colliders.Length; i++)
-            {
-                if (colliders[i].gameObject.tag == "Enemy")
-                {
-                    //This should start health stealing coroutines while enemies are in the sphere
-                    colliders[i].gameObject.GetComponent<EnemyController>().health.Damage(drainSpeed);   
-                }
-            }
-
-            if (currentHealth < maxHealth)
-            {
-                currentHealth += lifeDrained * drainConversion;
-            }
-
-            yield return null;
-        }
-
-        drainShadow.GetComponent<SpriteRenderer>().enabled = false;
-        drainOutline.GetComponent<SpriteRenderer>().enabled = false;
-
-        yield return null;
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
@@ -142,8 +103,5 @@ public class PlayerMovement : MonoBehaviour
         //Raise Corpse Visual
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(mousePosition, graspingHandsRadius);
-        // Life Drain radius
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(rb.position, lifeDrainRadius);
     }
 }

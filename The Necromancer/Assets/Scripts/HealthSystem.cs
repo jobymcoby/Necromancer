@@ -1,4 +1,8 @@
-﻿public class HealthSystem {
+﻿using System;
+
+public class HealthSystem {
+
+    public event EventHandler OnHealthChanged;
 
     private float health;
     private float healthMax;
@@ -22,11 +26,13 @@
     {
         health -= dmg;
         if (health < 0) health = 0;
+        OnHealthChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public void Heal(float dmg)
+    public void Heal(float heal)
     {
-        health += dmg;
+        health += heal;
         if (health > healthMax) health = 0;
+        OnHealthChanged?.Invoke(this, EventArgs.Empty);
     }
 }
