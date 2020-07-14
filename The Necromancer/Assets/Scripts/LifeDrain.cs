@@ -5,59 +5,52 @@ using UnityEngine;
 
 public class LifeDrain : MonoBehaviour
 {
+    #region Drain Image
     public Color color;
     private SpriteRenderer[] image;
+    #endregion
+
+    #region Drain Constants
     [Range(0,5)]
-    public float lifeDrainRadius = 1.8f;
-    private float drainSpeed = .1f;
-    private float drainConversion = 0.60f;
-    private float lifeDrained;
+    public float drainRadius = 1.8f;
+    private const float drainSpeed = .1f;
+    private const float drainConversion = 0.60f;
+    #endregion
 
-    private Collider2D[] enemies;
+    #region Enemies Affected
+    private List<GameObject> enemies = new List<GameObject>();
+    #endregion
 
-
-
-
-    // Start is called before the first frame update
     void Awake()
     {
+        // Set each color together
         image = GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer part in image)
         {
             part.color = new Color(color.r, color.g, color.b, part.color.a);
         }
-        transform.localScale = new Vector3(lifeDrainRadius / 1.8f, lifeDrainRadius / 1.8f, 1);
 
+        // Set radius of all objects
+        transform.localScale = new Vector3(drainRadius / 1.8f, drainRadius / 1.8f, 1);
     }
 
-    // Update is called once per frame
-    private void Update()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        enemies = Physics2D.OverlapCircleAll(transform.position, lifeDrainRadius);
-    }
-
-    void FixedUpdate()
-    {
-        Debug.Log(enemies.Count());
-
-        if (enemies.Count() != 0)
+        if (collision.gameObject.tag == "Enemy")
         {
-            foreach (Collider2D enemy in enemies)
-            {
-                if (enemy.tag == "Enemy") enemy.gameObject.GetComponent<EnemyController>().health.Damage(drainSpeed);
-            }
+            // Damage each enemy in range
+            collision.gameObject.GetComponent<EnemyController>().health.Damage(drainSpeed);
+            // Heal Player in proportion to damage to enemies 
+            GetComponentInParent<PlayerMovement>().health.Heal(drainSpeed * drainConversion);
         }
-    }
-
-    private void OnDisable()
-    {
-        
     }
 
     private void OnDrawGizmos()
     {
         // Life Drain radius
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, lifeDrainRadius);
+        Gizmos.DrawWireSphere(transform.position, drainRadius);
+        // Set the  color and radius values in the editor
+        Awake();
     }
 }

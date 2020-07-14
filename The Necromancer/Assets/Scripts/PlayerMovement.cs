@@ -10,98 +10,66 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Camera cam;
     private Vector2 movement;
-    public Vector2 mousePosition;
-    
-    public float graspingHandsRadius = 1f;
-    public float graspingHandsCooldown = 2.0f;
+    public Vector3 mousePosition;
+
+    public static float graspingHandsEffectTime = 3f;
+    private float graspingHandsCoolDown = 4f;
     private float graspingHandsAttackTimer = 0.0f;
     public GameObject graspingHandsArea;
 
+    private float lifeDrainCoolDown = .5f;
+    private float lifeDrainAttackTimer = 0.0f;
     public GameObject lifeDrainCircle;
 
     private bool hoverCorpse = false;       //Is the mouse hovering over a corpse
 
     private List<GameObject> enemiesDraining = new List<GameObject>();
 
-
     [SerializeField]
     private float maxHealth = 30f;
-    private float currentHealth;
+    [SerializeField]
+    public HealthSystem health;
 
-    
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
+        health = new HealthSystem(maxHealth);
+        lifeDrainCircle.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Player Input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
-        
+        mousePosition = new Vector3(cam.ScreenToWorldPoint(Input.mousePosition).x, cam.ScreenToWorldPoint(Input.mousePosition).y, 0);
+
         // Grasping Hands Input
-        if (Input.GetMouseButtonDown(0) && hoverCorpse == false) GraspingHands(mousePosition);
+        if (Input.GetMouseButtonDown(0) && hoverCorpse == false && Time.time >= graspingHandsAttackTimer)
+        {
+            Instantiate(graspingHandsArea, mousePosition, Quaternion.identity);
+            graspingHandsAttackTimer = Time.time + graspingHandsCoolDown;
+        }
 
         // Life Drain Input
-        lifeDrainCircle.SetActive(Input.GetKey(KeyCode.Space));
+        if (Input.GetKey(KeyCode.Space) && Time.time >= lifeDrainAttackTimer) lifeDrainCircle.SetActive(true);
+
+        // Life Drain CoolDown
+        if (Input.GetKeyUp(KeyCode.Space) && Time.time >= lifeDrainAttackTimer)
+        {
+            lifeDrainAttackTimer = Time.time + lifeDrainCoolDown;
+            lifeDrainCircle.SetActive(false);
+        }
 
         // idk about this attack
         if (Input.GetMouseButton(1))
         {
             //Fire Bolt
         }
-
-        //Keep max health
-        if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
     }
 
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
-    }
-
-    void GraspingHands(Vector2 mousePosition)
-    {
-        // Cool Down Check
-        if (Time.time >= graspingHandsAttackTimer)
-        {
-            // Starts coroutine for the grasping hands animation
-            graspingHandsArea.SetActive(true);
-            // Find enemies to grapple
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(mousePosition, graspingHandsRadius);
-                for (int i = 0; i < colliders.Length; i++)
-                {
-                    if (colliders[i].gameObject.tag == "Enemy" && hoverCorpse == false)
-                    {
-                        colliders[i].gameObject.GetComponent<EnemyController>().Grappled = true;
-                    }
-                }
-            //Start Cool Down Timer
-            graspingHandsAttackTimer = Time.time + graspingHandsCooldown;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            currentHealth -= 1;
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        //Raise Corpse Visual
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(mousePosition, graspingHandsRadius);
     }
 }

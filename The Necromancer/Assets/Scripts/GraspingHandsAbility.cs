@@ -4,32 +4,30 @@ using UnityEngine;
 
 public class GraspingHandsAbility : MonoBehaviour
 {
-    private PlayerMovement player;
-    private float radius;
-    private float cooldownTime;
+    public float graspingHandsRadius = 1f;
 
-    void Awake()
+    void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponentInParent<PlayerMovement>();
-        radius = player.graspingHandsRadius;
-        this.transform.localScale = new Vector3(radius, radius, 0);
-        cooldownTime = player.graspingHandsCooldown;
-        this.gameObject.SetActive(false);
+        transform.localScale = new Vector3(graspingHandsRadius, graspingHandsRadius, 0);
+        Destroy(this.gameObject, PlayerMovement.graspingHandsEffectTime);
     }
 
-    private void OnEnable()
+    private void OnTriggerEnter2D(Collider2D enemy)
     {
-        transform.position = player.mousePosition;
-        StartCoroutine("RunEffect", cooldownTime);
+        if (enemy.gameObject.tag == "Enemy")
+        {
+            StartCoroutine("Grappled", enemy.gameObject);
+        }
     }
 
-    private IEnumerator RunEffect( float effectTime)
+    private IEnumerator Grappled(GameObject enemy)
     {
-        // Apply hands to grappled enemy
-        // set of more hand isn the circle with some distance bars to make it normal
-        yield return new WaitForSeconds(effectTime);
+        // Freeze Enemy position 
+        enemy.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+        yield return new WaitForSeconds(enemy.gameObject.GetComponent<EnemyController>().holdTime);
+        // If they are still alive unfreeze
+        if (enemy != null) enemy.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
 
-        this.gameObject.SetActive(false); 
     }
 }
  

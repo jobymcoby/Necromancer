@@ -8,25 +8,8 @@ public class EnemyController : MonoBehaviour
     public Rigidbody2D rb;
     [SerializeField]
     private float moveSpeed = 3f;
-    [SerializeField]
-    private float holdTime = 1f;
 
-    private bool _grappled;
-    public bool Grappled
-    {
-        set
-        {
-            if (value == _grappled)
-            {
-                return;
-            }
-            if (value && !_grappled)
-            {
-                StartCoroutine("Grapple");
-                _grappled = value;
-            }
-        }
-    }
+    public float holdTime = 1.8f;
 
     private GameObject player;
     private Vector2 moveDir;
@@ -50,11 +33,8 @@ public class EnemyController : MonoBehaviour
     {
         FindPlayerDirections();
 
-        //die
-        if (health.Current() == 0)
-        {
-            Destroy(this.gameObject);
-        }
+        // Die
+        if (health.Current() == 0) Destroy(this.gameObject);
     }
 
     private void FixedUpdate()
@@ -68,14 +48,5 @@ public class EnemyController : MonoBehaviour
         // Find the vector between the enemy and player and normalize it
         moveDir = player.GetComponent<Rigidbody2D>().position - rb.position;
         moveDir.Normalize();
-    }
-
-    public IEnumerator Grapple()
-    {
-        float prevSpeed = moveSpeed;
-        moveSpeed = 0;
-        yield return new WaitForSeconds(holdTime);
-        moveSpeed = prevSpeed;
-        _grappled = false;
     }
 }

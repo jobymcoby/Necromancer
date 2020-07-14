@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5162575757987684304}
   - component: {fileID: 6315752248056401048}
+  - component: {fileID: 310137944}
   m_Layer: 9
   m_Name: LifeDrainCircle
-  m_TagString: Untagged
+  m_TagString: Life Drain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +47,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0.83800983, g: 0.8867924, b: 0.4224813, a: 1}
-  lifeDrainRadius: 2.88
+  lifeDrainRadius: 2.25
+  enemies: []
+--- !u!58 &310137944
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3572549942281889317}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.93
 --- !u!1 &4158404819410296671
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,10 +75,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4937665947450854068}
   - component: {fileID: 2630171547199217470}
-  - component: {fileID: 6785365342760250122}
   m_Layer: 9
-  m_Name: WhiteCircle
-  m_TagString: Untagged
+  m_Name: TriggerShade
+  m_TagString: Life Drain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,22 +146,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &6785365342760250122
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4158404819410296671}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.93
 --- !u!1 &7421313813979691649
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +158,7 @@ GameObject:
   - component: {fileID: 7605771240117595751}
   m_Layer: 9
   m_Name: LifeDrainCircle
-  m_TagString: Untagged
+  m_TagString: Life Drain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
