@@ -9,7 +9,7 @@ public class GraspingHandsAbility : MonoBehaviour
     void Start()
     {
         transform.localScale = new Vector3(graspingHandsRadius, graspingHandsRadius, 0);
-        Destroy(this.gameObject, PlayerMovement.graspingHandsEffectTime);
+        Destroy(this.gameObject, PlayerController.graspingHandsEffectTime);
     }
 
     private void OnTriggerEnter2D(Collider2D enemy)
@@ -22,12 +22,12 @@ public class GraspingHandsAbility : MonoBehaviour
 
     private IEnumerator Grappled(GameObject enemy)
     {
+        EnemyController enenmyController = enemy.GetComponent<EnemyController>();
         // Freeze Enemy position 
-        enemy.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
-        yield return new WaitForSeconds(enemy.gameObject.GetComponent<EnemyController>().holdTime);
+        enenmyController.rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+        yield return new WaitForSeconds(enenmyController.holdTime);
         // If they are still alive unfreeze
-        if (enemy != null) enemy.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-
+        if (enemy != null) enenmyController.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
  

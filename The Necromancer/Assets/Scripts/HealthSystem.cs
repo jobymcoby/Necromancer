@@ -5,7 +5,7 @@ public class HealthSystem {
     public event EventHandler OnHealthChanged;
 
     private float health;
-    private float healthMax;
+    private readonly float healthMax;
 
     public HealthSystem(float Max) {
         this.healthMax = Max;
@@ -34,5 +34,14 @@ public class HealthSystem {
         health += heal;
         if (health > healthMax) health = 0;
         OnHealthChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void Resurrect()
+    {
+        if (health == 0)
+        {
+            health = healthMax;
+        }
+
     }
 }

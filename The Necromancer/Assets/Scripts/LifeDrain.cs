@@ -11,18 +11,22 @@ public class LifeDrain : MonoBehaviour
     #endregion
 
     #region Drain Constants
-    [Range(0,5)]
-    public float drainRadius = 1.8f;
+    [Range(0,5)] public float drainRadius = 1.8f;
     private const float drainSpeed = .1f;
     private const float drainConversion = 0.60f;
     #endregion
 
     #region Enemies Affected
-    private List<GameObject> enemies = new List<GameObject>();
+    private Dictionary<GameObject, EnemyController> enemies = new Dictionary<GameObject, EnemyController>();
+    #endregion
+
+    #region Player to Heal
+    private PlayerController player;
     #endregion
 
     void Awake()
     {
+        player = GetComponentInParent<PlayerController>();
         // Set each color together
         image = GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer part in image)
@@ -34,15 +38,32 @@ public class LifeDrain : MonoBehaviour
         transform.localScale = new Vector3(drainRadius / 1.8f, drainRadius / 1.8f, 1);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnEnable()
     {
-        if (collision.gameObject.tag == "Enemy")
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy") enemies.Add(collision.gameObject, collision.gameObject.GetComponent<EnemyController>());
+    }
+
+    private void FixedUpdate()
+    {
+        Debug.Log(enemies.Count());
+        // Guard clause
+        if (enemies.Count() == 0) return;
+
+        foreach (EnemyController enemy in enemies.Values)
         {
-            // Damage each enemy in range
-            collision.gameObject.GetComponent<EnemyController>().health.Damage(drainSpeed);
-            // Heal Player in proportion to damage to enemies 
-            GetComponentInParent<PlayerMovement>().health.Heal(drainSpeed * drainConversion);
-        }
+            enemy.health.Damage(drainSpeed);                    // Damage each enemy in range
+            player.health.Heal(drainSpeed * drainConversion);   // Heal Player in proportion to damage to enemies  
+        }    
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy") enemies.Remove(collision.gameObject);
     }
 
     private void OnDrawGizmos()

@@ -16,5 +16,4 @@ public class HealthBar : MonoBehaviour
     {
         this.transform.localScale = new Vector3(healthSystem.CurrentPercent() * 10, 1);
     }
-
 }

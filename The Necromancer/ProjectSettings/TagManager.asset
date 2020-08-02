@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Life Drain
+  - Corpse
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - 
   - Ground
   - Player
-  - 
+  - Enemy
   - 
   - 
   - 
