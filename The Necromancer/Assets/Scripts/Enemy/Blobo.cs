@@ -8,7 +8,7 @@ public class Blobo : EnemyController
     [SerializeField] private readonly float maxHealth = 10f;
     [SerializeField] private float moveSpeed = 3f;
 
-    private float holdTime = 1.8f;
+    private float exitGrappleTime = 1.8f;
 
     public override void FindMoveDirections(GameObject target)
     {
@@ -29,6 +29,6 @@ public class Blobo : EnemyController
 
     public override void SetHoldTime()
     {
-        base.holdTime = holdTime;
+        base.holdTime = exitGrappleTime;
     }
 }

@@ -42,6 +42,5 @@ public class HealthSystem {
         {
             health = healthMax;
         }
-
     }
 }

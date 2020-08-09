@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EnemyController : MonoBehaviour
+public abstract class EnemyController : MonoBehaviour, IDamagable
 {
     public Rigidbody2D rb;
     public Collider2D hitBox;
     public Animator animator;
     public HealthSystem health;
     public HealthBar healthBar;
-    private readonly float oneHealth = 1;
-
     public float holdTime;
 
     #region AI Abilities
     protected GameObject target;
     protected Vector2 moveDir;
+    public Color deadColor;
     #endregion
 
     protected void Awake()
@@ -24,28 +23,32 @@ public abstract class EnemyController : MonoBehaviour
         hitBox = GetComponent<Collider2D>();
         animator = GetComponent<Animator>(); 
         healthBar = GetComponentInChildren<HealthBar>();
-
-        SetMaxHealth();
-        SetHoldTime();
-
-        healthBar.Setup(health);
-
-        target = GameObject.FindGameObjectWithTag("Player");    // Set target to player
     }
 
-    // Update is called once per frame
+    protected void Start()
+    {
+        SetMaxHealth();
+        SetHoldTime();
+        healthBar.Setup(health);
+
+        // Set target to player
+        target = GameObject.FindGameObjectWithTag("Player");
+    }
+
     protected void Update()
     {
         FindMoveDirections(target);
-
-        // Die
         if (health.Current() == 0) Die();
     }
 
     protected void FixedUpdate()
     {
-        //Move player towards player
         Move(); 
+    }
+
+    public void Damage(float dmg)
+    {
+        health.Damage(dmg);
     }
 
     public void Die()
@@ -58,16 +61,22 @@ public abstract class EnemyController : MonoBehaviour
         hitBox.isTrigger = true;
         animator.enabled = false;
 
-        // Doesnt Work (FIX Lights)
-        // Set color a shade darker and grey/green scale 
-        Color shade = GetComponent<SpriteRenderer>().color;
-        GetComponent<SpriteRenderer>().color = new Color(shade.r - 30f, shade.g - 30f, shade.b - 30f, shade.a);
+        // Set death shader
+        GetComponent<SpriteRenderer>().color = deadColor;
     }
 
     public void Resurrect()
     {
-        // Restore Health
+        // Switch State 
+        tag = "Undead";
+        // Switch State 
         health.Resurrect();
+        Debug.Log("Full Rez");
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        hitBox.isTrigger = false;
+        animator.enabled = true;
+        target = gameObject;
+
     }
 
     public abstract void FindMoveDirections(GameObject target);

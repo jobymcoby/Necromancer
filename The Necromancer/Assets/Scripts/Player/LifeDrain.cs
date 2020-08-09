@@ -50,13 +50,12 @@ public class LifeDrain : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(enemies.Count());
-        // Guard clause
+        // no enemies, do nothing
         if (enemies.Count() == 0) return;
 
-        foreach (EnemyController enemy in enemies.Values)
+        foreach (IDamagable enemy in enemies.Values)
         {
-            enemy.health.Damage(drainSpeed);                    // Damage each enemy in range
+            enemy.Damage(drainSpeed);                           // Damage each enemy in range
             player.health.Heal(drainSpeed * drainConversion);   // Heal Player in proportion to damage to enemies  
         }    
     }
