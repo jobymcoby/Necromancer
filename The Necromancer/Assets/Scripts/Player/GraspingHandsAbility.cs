@@ -16,18 +16,8 @@ public class GraspingHandsAbility : MonoBehaviour
     {
         if (enemy.gameObject.tag == "Enemy")
         {
-            StartCoroutine("Grappled", enemy.gameObject);
+            StartCoroutine(enemy.gameObject.GetComponent<EnemyController>().Grappled());
         }
-    }
-
-    private IEnumerator Grappled(GameObject enemy)
-    {
-        EnemyController enenmyController = enemy.GetComponent<EnemyController>();
-        // Freeze Enemy position 
-        enenmyController.rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
-        yield return new WaitForSeconds(enenmyController.holdTime);
-        // If they are still alive unfreeze
-        if (enemy != null) enenmyController.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
  

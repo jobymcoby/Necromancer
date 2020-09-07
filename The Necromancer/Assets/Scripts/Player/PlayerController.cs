@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour, IDamagable
     public Camera cam;
     public Ray clickRay;
     public HealthSystem health;
-
+    public LayerMask clickLayers;
     [SerializeField] private const float maxHealth = 30f;
 
-    public LayerMask clickLayers;
+    #region Arcane Bolt (Left Click)
+
+    #endregion
     #region Grasping Hands (Right Click on Ground)
     public static float graspingHandsEffectTime = 3f;
     private float graspingHandsCoolDown = 4f;
@@ -32,9 +34,6 @@ public class PlayerController : MonoBehaviour, IDamagable
     private float lifeDrainCoolDown = .2f;
     private float lifeDrainAttackTimer = 0.0f;
     public GameObject lifeDrainCircle;
-    #endregion
-    #region Arcane Bolt (Left Click)
-
     #endregion
 
     void Start()
@@ -114,7 +113,7 @@ public class PlayerController : MonoBehaviour, IDamagable
                 {
                     // Restore Health, add to Horde
                     ResurrectEvent?.Invoke(hit.collider.gameObject);
-                    hit.collider.gameObject.GetComponent<EnemyController>().Resurrect();
+                    hit.collider.gameObject.GetComponent<EnemyController>().rez = true;
                     resurrectTimer = Time.time + resurrectCoolDown;
                 }
                 else
@@ -129,7 +128,7 @@ public class PlayerController : MonoBehaviour, IDamagable
                 if (Time.time >= graspingHandsTimer)
                 {
                     // Create Grasping Hands 
-                    Instantiate(graspingHandsArea, new Vector2(clickRay.origin.x, clickRay.origin.y), Quaternion.identity);
+                    Instantiate(graspingHandsArea, (Vector2) clickRay.origin, Quaternion.identity);
                     graspingHandsTimer = Time.time + graspingHandsCoolDown;
                 }
                 else

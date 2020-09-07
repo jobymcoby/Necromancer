@@ -1,87 +1,128 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using System;
+using Pathfinding;
 
-public abstract class EnemyController : MonoBehaviour, IDamagable
+public class EnemyController : MonoBehaviour, IDamagable
 {
-    public Rigidbody2D rb;
-    public Collider2D hitBox;
-    public Animator animator;
-    public HealthSystem health;
-    public HealthBar healthBar;
-    public float holdTime;
+    private Seeker seeker;
+    private Rigidbody2D rb;
+    private Animator animator;
+    private Collider2D hitBox;
+    public EnemyData enemyData;
+    public bool rez = false;
+
+    private HealthSystem health;
+    private HealthBar healthBar;
+    private StateMachine stateMachine;
 
     #region AI Abilities
-    protected GameObject target;
-    protected Vector2 moveDir;
+    private Path path;
+    private int currentWaypoint = 0;
+    public float nextWapointDistance = 3f;
+    public Transform target;
     public Color deadColor;
     #endregion
 
-    protected void Awake()
+    private void Awake()
     {
+        // Set target to player fix until i figure out why it changes stae when the target is still null
+        // target = GameObject.FindGameObjectWithTag("Player").transform;
+
+        seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         hitBox = GetComponent<Collider2D>();
         animator = GetComponent<Animator>(); 
         healthBar = GetComponentInChildren<HealthBar>();
+
+        #region State Machine Setup
+        // States
+        stateMachine = new StateMachine();
+        var idle = new Idle();
+        var move = new MoveToPosition(rb, enemyData.moveSpeed, ref seeker, FindPlayer);
+        var attack = new Attack();
+        var corpse = new Corpse(gameObject, rb, hitBox, animator);
+        var undead = new Undead(gameObject, rb, hitBox, animator);
+
+        // State transition conditions
+        Func<bool> OnTarget() => () => FindPlayer() != null;
+        Func<bool> OffTarget() => () => !OnTarget().Invoke();
+        Func<bool> OnDied() => () => health.Current() == 0 && tag == "Enemy";
+        Func<bool> OnRez() => () => rez == true;
+        // Func<bool> InRange() => () => hit enemy && cooldown up;
+        // Func<bool> InCoolDown() => () => !cooldown up.
+
+        // Set State transitions
+        void At(IState from, IState to, Func<bool> condition) => stateMachine.AddTransition(from, to, condition);
+        At(idle, move, OnTarget());
+        At(move, idle, OffTarget());
+
+        // At(move, attack, InRange());
+        // At(move, attack, InRange());
+        At(idle, corpse, OnDied());
+        At(move, corpse, OnDied());
+        At(attack, corpse, OnDied());
+
+        At(corpse, undead, OnRez());
+
+        // Set first state to alive
+        stateMachine.SetState(idle);
+        #endregion
     }
 
-    protected void Start()
+    private void Start()
     {
-        SetMaxHealth();
-        SetHoldTime();
+        health = new HealthSystem(enemyData.maxHealth);
         healthBar.Setup(health);
-
-        // Set target to player
-        target = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    protected void Update()
+    private void Update()
     {
-        FindMoveDirections(target);
-        if (health.Current() == 0) Die();
+        stateMachine.Tick();
     }
 
-    protected void FixedUpdate()
+    private void FixedUpdate()
     {
-        Move(); 
+        stateMachine.FixedTick();
     }
 
+    private void LateUpdate()
+    {
+        // reset rez after transition
+        if (rez == true) rez = !rez;
+    }
+
+    // IDamagable
     public void Damage(float dmg)
     {
         health.Damage(dmg);
     }
 
-    public void Die()
+    public Transform FindPlayer()
     {
-        // Set Tag
-        tag = "Corpse";
+        Transform player = GameObject.FindGameObjectWithTag("Player").transform;
+        float sightRange = 5f;
+        if (Vector3.Distance(transform.position, player.position) < sightRange)
+        {
+            return player;
+        }
+        return null;
+    }
 
-        // Stop movement, remove collisions
+    public IEnumerator Grappled()
+    {
+        // Freeze Enemy position 
         rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
-        hitBox.isTrigger = true;
-        animator.enabled = false;
-
-        // Set death shader
-        GetComponent<SpriteRenderer>().color = deadColor;
+        yield return new WaitForSeconds(enemyData.holdTime);
+        // If they are still alive unfreeze
+        if (this != null) rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
-    public void Resurrect()
+    private void OnDestroy()
     {
-        // Switch State 
-        tag = "Undead";
-        // Switch State 
-        health.Resurrect();
-        Debug.Log("Full Rez");
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        hitBox.isTrigger = false;
-        animator.enabled = true;
-        target = gameObject;
-
+        
     }
-
-    public abstract void FindMoveDirections(GameObject target);
-    public abstract void Move();
-    public abstract void SetMaxHealth();
-    public abstract void SetHoldTime();
 
 }
