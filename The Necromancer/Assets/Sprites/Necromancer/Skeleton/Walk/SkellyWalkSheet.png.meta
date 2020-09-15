@@ -1,0 +1,1328 @@
+fileFormatVersion: 2
+guid: 447928e202157a74db2403c57ae52808
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1305138396266090901
+    second: SkellyWalkSheet_0
+  - first:
+      213: 1762922860962598464
+    second: SkellyWalkSheet_1
+  - first:
+      213: -427801519442309628
+    second: SkellyWalkSheet_2
+  - first:
+      213: 8059545621113367508
+    second: SkellyWalkSheet_3
+  - first:
+      213: 3021205557392056154
+    second: SkellyWalkSheet_4
+  - first:
+      213: 824225890898633915
+    second: SkellyWalkSheet_5
+  - first:
+      213: -379486061983591268
+    second: SkellyWalkSheet_6
+  - first:
+      213: 2719287661382649314
+    second: SkellyWalkSheet_7
+  - first:
+      213: 423813770657463992
+    second: SkellyWalkSheet_8
+  - first:
+      213: -4813381514800664863
+    second: SkellyWalkSheet_9
+  - first:
+      213: -1561764816697375776
+    second: SkellyWalkSheet_10
+  - first:
+      213: -8068414959324036328
+    second: SkellyWalkSheet_11
+  - first:
+      213: 4225713630982127107
+    second: SkellyWalkSheet_12
+  - first:
+      213: 2298942243873055923
+    second: SkellyWalkSheet_13
+  - first:
+      213: 690057169612357209
+    second: SkellyWalkSheet_14
+  - first:
+      213: -3764733172065845738
+    second: SkellyWalkSheet_15
+  - first:
+      213: 1000557519208298872
+    second: SkellyWalkSheet_16
+  - first:
+      213: 3245870081577472993
+    second: SkellyWalkSheet_17
+  - first:
+      213: 4399090758108016241
+    second: SkellyWalkSheet_18
+  - first:
+      213: 7808245142329752348
+    second: SkellyWalkSheet_19
+  - first:
+      213: 3195920784757035763
+    second: SkellyWalkSheet_20
+  - first:
+      213: -1277447926573189539
+    second: SkellyWalkSheet_21
+  - first:
+      213: -1535606743414891331
+    second: SkellyWalkSheet_22
+  - first:
+      213: -136094244696699695
+    second: SkellyWalkSheet_23
+  - first:
+      213: -7653993783043824925
+    second: SkellyWalkSheet_24
+  - first:
+      213: 4974186062990834028
+    second: SkellyWalkSheet_25
+  - first:
+      213: 8416160656483433893
+    second: SkellyWalkSheet_26
+  - first:
+      213: 642320434612149784
+    second: SkellyWalkSheet_27
+  - first:
+      213: 6607705073974358173
+    second: SkellyWalkSheet_28
+  - first:
+      213: -1291979762383984637
+    second: SkellyWalkSheet_29
+  - first:
+      213: 5835608197708790417
+    second: SkellyWalkSheet_30
+  - first:
+      213: 8541615309797607161
+    second: SkellyWalkSheet_31
+  - first:
+      213: -6853368975509400014
+    second: SkellyWalkSheet_32
+  - first:
+      213: 4248072741197441441
+    second: SkellyWalkSheet_33
+  - first:
+      213: -2890263843563803462
+    second: SkellyWalkSheet_34
+  - first:
+      213: -373271082232879682
+    second: SkellyWalkSheet_35
+  - first:
+      213: -4771192203353769725
+    second: SkellyWalkSheet_36
+  - first:
+      213: -1201941071176084470
+    second: SkellyWalkSheet_37
+  - first:
+      213: -8121949352346675155
+    second: SkellyWalkSheet_38
+  - first:
+      213: -3951232297890897846
+    second: SkellyWalkSheet_39
+  - first:
+      213: 6862971314784275614
+    second: SkellyWalkSheet_40
+  - first:
+      213: -5297796370991129701
+    second: SkellyWalkSheet_41
+  - first:
+      213: 2903639049227048226
+    second: SkellyWalkSheet_42
+  - first:
+      213: 4784683189632695838
+    second: SkellyWalkSheet_43
+  - first:
+      213: 1452699981092353498
+    second: SkellyWalkSheet_44
+  - first:
+      213: 1919904269372780799
+    second: SkellyWalkSheet_45
+  - first:
+      213: -2640796028973396871
+    second: SkellyWalkSheet_46
+  - first:
+      213: -9154126949596594982
+    second: SkellyWalkSheet_47
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 22
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Lumin
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SkellyWalkSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 180
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 591d92cd478cc1210800000000000000
+      internalID: 1305138396266090901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 180
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04e471e6009277810800000000000000
+      internalID: 1762922860962598464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_2
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 180
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40ec44fd8c4201af0800000000000000
+      internalID: -427801519442309628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_3
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 180
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4db64858a0249df60800000000000000
+      internalID: 8059545621113367508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_4
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 180
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5f1ac9827a7de920800000000000000
+      internalID: 3021205557392056154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_5
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 180
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb461b1b41d307b00800000000000000
+      internalID: 824225890898633915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_6
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 180
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94914eef6bcbbaf0800000000000000
+      internalID: -379486061983591268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_7
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 180
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e5c0da78b9dcb520800000000000000
+      internalID: 2719287661382649314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bef4f20160b1e500800000000000000
+      internalID: 423813770657463992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_9
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 144
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eeefd1c30f633db0800000000000000
+      internalID: -4813381514800664863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_10
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 144
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e3cc0e7c2f735ae0800000000000000
+      internalID: -1561764816697375776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_11
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 144
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8130b01c75b370090800000000000000
+      internalID: -8068414959324036328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_12
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 144
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30e37399820c4aa30800000000000000
+      internalID: 4225713630982127107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_13
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 144
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b4613d5acb77ef10800000000000000
+      internalID: 2298942243873055923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_14
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 144
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95eb475f653939900800000000000000
+      internalID: 690057169612357209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_15
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 144
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61eb2ec502bf0cbc0800000000000000
+      internalID: -3764733172065845738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 108
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 879b1c533c1b2ed00800000000000000
+      internalID: 1000557519208298872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_17
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 108
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e35e7f44a5ab0d20800000000000000
+      internalID: 3245870081577472993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_18
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 108
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17e6bb3bcb5bc0d30800000000000000
+      internalID: 4399090758108016241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_19
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 108
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1bfbbb46957c5c60800000000000000
+      internalID: 7808245142329752348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_20
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 108
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f21bb165013a5c20800000000000000
+      internalID: 3195920784757035763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_21
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 108
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.45454547, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d56bb8501e7954ee0800000000000000
+      internalID: -1277447926573189539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_22
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 108
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.45454547, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbc9f088dcd60bae0800000000000000
+      internalID: -1535606743414891331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_23
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 108
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.45454547, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dcc0e8610f7c1ef0800000000000000
+      internalID: -136094244696699695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 72
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.54545456, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e2ef98f43d87c590800000000000000
+      internalID: -7653993783043824925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_25
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 72
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.54545456, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c697443bedbd70540800000000000000
+      internalID: 4974186062990834028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_26
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 72
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.54545456, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad305eb6853cc470800000000000000
+      internalID: 8416160656483433893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_27
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 72
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.54545456, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81e1809380bf9e800800000000000000
+      internalID: 642320434612149784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_28
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 72
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.54545456, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d90b9c271c843bb50800000000000000
+      internalID: 6607705073974358173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_29
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 72
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 308eb165047f11ee0800000000000000
+      internalID: -1291979762383984637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_30
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 72
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.54545456, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19a3ac8ccbe3cf050800000000000000
+      internalID: 5835608197708790417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_31
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 72
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f6468c6ed9e98670800000000000000
+      internalID: 8541615309797607161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 36
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 236541c3a31f3e0a0800000000000000
+      internalID: -6853368975509400014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_33
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 36
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a9e71f96af24fa30800000000000000
+      internalID: 4248072741197441441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_34
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 36
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abc6939f858b3e7d0800000000000000
+      internalID: -2890263843563803462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_35
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 36
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb5659aadefd1daf0800000000000000
+      internalID: -373271082232879682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_36
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 36
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3093cfb48f159cdb0800000000000000
+      internalID: -4771192203353769725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_37
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 36
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.45454547, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a04d893c6f8d15fe0800000000000000
+      internalID: -1201941071176084470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_38
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 36
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.45454547, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2899a1981a094f80800000000000000
+      internalID: -8121949352346675155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_39
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 36
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.45454547, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a40a92bd8276a29c0800000000000000
+      internalID: -3951232297890897846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.54545456, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9c89699c0c2e3f50800000000000000
+      internalID: 6862971314784275614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_41
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 0
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.6363636, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9b58bef4427a76b0800000000000000
+      internalID: -5297796370991129701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_42
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 0
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.6363636, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2259125c45ccb4820800000000000000
+      internalID: 2903639049227048226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_43
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 0
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.6363636, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1ef6d8b20c966240800000000000000
+      internalID: 4784683189632695838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_44
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 0
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.54545456, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad5f932afe6092410800000000000000
+      internalID: 1452699981092353498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_45
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 0
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.54545456, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff078bac2ced4aa10800000000000000
+      internalID: 1919904269372780799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_46
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 0
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.6363636, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97c47c0d0020a5bd0800000000000000
+      internalID: -2640796028973396871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkellyWalkSheet_47
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 0
+        width: 22
+        height: 36
+      alignment: 9
+      pivot: {x: 0.54545456, y: 0.19444445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adcf67c3a0206f080800000000000000
+      internalID: -9154126949596594982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

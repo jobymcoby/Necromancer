@@ -9,17 +9,14 @@ public class LifeDrain : MonoBehaviour
     public Color color;
     private SpriteRenderer[] image;
     #endregion
-
     #region Drain Constants
     [Range(0,5)] public float drainRadius = 1.8f;
     private const float drainSpeed = .1f;
     private const float drainConversion = 0.60f;
     #endregion
-
     #region Enemies Affected
-    private Dictionary<GameObject, EnemyController> enemies = new Dictionary<GameObject, EnemyController>();
+    private Dictionary<GameObject, NPCHealth> enemies = new Dictionary<GameObject, NPCHealth>();
     #endregion
-
     #region Player to Heal
     private PlayerController player;
     #endregion
@@ -45,7 +42,7 @@ public class LifeDrain : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy") enemies.Add(collision.gameObject, collision.gameObject.GetComponent<EnemyController>());
+        if (collision.gameObject.tag == "Enemy") enemies.Add(collision.gameObject, collision.gameObject.GetComponent<NPCHealth>());
     }
 
     private void FixedUpdate()

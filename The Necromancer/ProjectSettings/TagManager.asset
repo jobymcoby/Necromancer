@@ -19,13 +19,13 @@ TagManager:
   - 
   - 
   - Ground
-  - Player
-  - Enemy
+  - Body
   - Obstacle
-  - 
-  - 
-  - 
-  - 
+  - Feet
+  - Sight
+  - Attack Hitbox
+  - Projectiles
+  - Player
   - 
   - 
   - 

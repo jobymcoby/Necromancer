@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour, IDamagable
     public Camera cam;
     public Ray clickRay;
     public HealthSystem health;
-    public LayerMask clickLayers;
+    [SerializeField] private LayerMask clickLayers;
     [SerializeField] private const float maxHealth = 30f;
+
 
     #region Arcane Bolt (Left Click)
 
@@ -101,10 +102,10 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         // Send out ray to see what the mouse is over, I use the 3D vector here 
         // because negative in the Z axis is in front of the screen. 
-        hit = Physics2D.Raycast(clickRay.origin, clickRay.direction);
+        hit = Physics2D.Raycast(clickRay.origin, clickRay.direction, 20f, clickLayers);
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.gameObject.tag);
+            Debug.Log(hit.collider.gameObject.name);
             // Resurrect
             if (hit.collider.gameObject.tag == "Corpse")
             {
@@ -113,7 +114,7 @@ public class PlayerController : MonoBehaviour, IDamagable
                 {
                     // Restore Health, add to Horde
                     ResurrectEvent?.Invoke(hit.collider.gameObject);
-                    hit.collider.gameObject.GetComponent<EnemyController>().rez = true;
+                    hit.collider.gameObject.GetComponent<NPCController>().rez = true;
                     resurrectTimer = Time.time + resurrectCoolDown;
                 }
                 else

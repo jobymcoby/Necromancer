@@ -16,7 +16,7 @@ public class GraspingHandsAbility : MonoBehaviour
     {
         if (enemy.gameObject.tag == "Enemy")
         {
-            StartCoroutine(enemy.gameObject.GetComponent<EnemyController>().Grappled());
+            StartCoroutine(enemy.gameObject.GetComponent<NPCController>().Grappled());
         }
     }
 }

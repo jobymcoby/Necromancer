@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class SpritePositionManager : MonoBehaviour
 {
-    // Start int
-    [SerializeField] private int sortOrderBase = 5000;
+    [SerializeField] private int sortOrderBase = 50000;
+    [SerializeField] private int offset;
+    // If this object cannot move we run this script once after the update and destroy this component
+    [SerializeField] private bool canMove = true;
+
     private Renderer myRenderer;
+    private float timer;
+    private float cooldown = .2f;
 
     private void Awake()
     {
@@ -15,7 +20,14 @@ public class SpritePositionManager : MonoBehaviour
 
     void LateUpdate()
     {
-        // Every sprite will have thier order be propotional with thier y position
-        myRenderer.sortingOrder = (int)(sortOrderBase - transform.position.y);
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            timer = cooldown;
+            // Every sprite will have thier order be propotional with thier y position
+            myRenderer.sortingOrder = (int)(sortOrderBase - transform.position.y * 10 - offset);
+
+            if (!canMove) Destroy(this);
+        }
     }
 }

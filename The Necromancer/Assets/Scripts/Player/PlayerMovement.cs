@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
         #endregion
 
-        // BAD
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
         mousePos.Normalize();

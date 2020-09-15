@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 308079643126484144}
   - component: {fileID: 4516362381476386004}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 6449394743259109006}
   - component: {fileID: 3260051704531562008}
   - component: {fileID: 1454515470}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: GraspingHandsArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
