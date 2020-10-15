@@ -3,71 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class LifeDrain : MonoBehaviour
+public class LifeDrain : DynamicTriggerListener
 {
-    #region Drain Image
-    public Color color;
-    private SpriteRenderer[] image;
-    #endregion
-    #region Drain Constants
-    [Range(0,5)] public float drainRadius = 1.8f;
-    private const float drainSpeed = .1f;
-    private const float drainConversion = 0.60f;
-    #endregion
     #region Enemies Affected
     private Dictionary<GameObject, NPCHealth> enemies = new Dictionary<GameObject, NPCHealth>();
+    private const float drainSpeed = .1f;
+    private const float drainConversion = 0.60f;
+
+    public delegate void DamageDealer(float dmg);
+    public static event DamageDealer DealDamage;
     #endregion
     #region Player to Heal
     private PlayerController player;
+    private int enemyMultiplier;
     #endregion
 
     void Awake()
     {
         player = GetComponentInParent<PlayerController>();
-        // Set each color together
-        image = GetComponentsInChildren<SpriteRenderer>();
-        foreach (SpriteRenderer part in image)
+        enemyMultiplier = 0;
+    }
+
+    // Triggers get the gameobjects to deal damage to
+    public override void OnDynamicTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
         {
-            part.color = new Color(color.r, color.g, color.b, part.color.a);
+            DealDamage += other.gameObject.GetComponent<NPCHealth>().Damage;
+            enemyMultiplier++;
         }
-
-        // Set radius of all objects
-        transform.localScale = new Vector3(drainRadius / 1.8f, drainRadius / 1.8f, 1);
     }
 
-    private void OnEnable()
+    public override void OnDynamicTriggerExit2D(Collider2D other)
     {
-
+        if (other.gameObject.tag == "Enemy")
+        {
+            DealDamage -= other.gameObject.GetComponent<NPCHealth>().Damage;
+            enemyMultiplier--;
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy") enemies.Add(collision.gameObject, collision.gameObject.GetComponent<NPCHealth>());
-    }
-
+    // Damage is dealt every .2 seconds
     private void FixedUpdate()
     {
-        // no enemies, do nothing
-        if (enemies.Count() == 0) return;
-
-        foreach (IDamagable enemy in enemies.Values)
-        {
-            enemy.Damage(drainSpeed);                           // Damage each enemy in range
-            player.health.Heal(drainSpeed * drainConversion);   // Heal Player in proportion to damage to enemies  
-        }    
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy") enemies.Remove(collision.gameObject);
-    }
-
-    private void OnDrawGizmos()
-    {
-        // Life Drain radius
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, drainRadius);
-        // Set the  color and radius values in the editor
-        Awake();
+        DealDamage?.Invoke(drainSpeed);                      
+        player.Heal(drainSpeed * drainConversion * enemyMultiplier);   
     }
 }

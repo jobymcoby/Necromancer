@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class MeleeAttackController : MonoBehaviour
+public class MeleeAttackController : DynamicTriggerListener
 {
-    public bool AttackReady;
+    public float attackRange = .9f;
     private NPCController npc;
     private List<NPCHealth> enemies = new List<NPCHealth>();
     private NPCHealth targetEnemy = null;
+
+    public delegate void DamageDealer(float dmg);
+    public static event DamageDealer DealDamage;
 
 
     private void Awake()
@@ -27,29 +30,23 @@ public class MeleeAttackController : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public override void OnDynamicTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (npc.aggressionMatrix.checkAggression(collision.gameObject.tag))
         {
             NPCHealth enemy = collision.gameObject.GetComponent<NPCHealth>();
+            enemy?.Damage(.25f);
             enemies.Add(enemy);
-            Debug.Log(collision.gameObject.name);
+            Debug.Log("i hit "+ collision.gameObject.name);
             if (targetEnemy == null)
             {
                 targetEnemy = enemy;
                 // Send Event target Aquired
-
-                AttackReady = true;
             }
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
+    public override void OnDynamicTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {

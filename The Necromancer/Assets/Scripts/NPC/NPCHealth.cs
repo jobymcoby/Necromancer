@@ -25,4 +25,9 @@ public class NPCHealth : MonoBehaviour, IDamagable
     {
         health.Damage(dmg);
     }
+
+    public void Heal(float heal)
+    {
+        health.Heal(heal);
+    }
 }

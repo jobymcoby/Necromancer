@@ -25,15 +25,17 @@ public class HealthSystem {
     public void Damage(float dmg)
     {
         health -= dmg;
+
         if (health < 0) health = 0;
-        OnHealthChanged?.Invoke(this, EventArgs.Empty);
+        else OnHealthChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Heal(float heal)
     {
         health += heal;
-        if (health > healthMax) health = 0;
-        OnHealthChanged?.Invoke(this, EventArgs.Empty);
+
+        if (health > healthMax) health = healthMax;
+        else OnHealthChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Resurrect()

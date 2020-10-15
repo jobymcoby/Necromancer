@@ -16,17 +16,19 @@ public class Idle : IState
 
     public void OnEnter()
     {
-
+        rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void Tick()
     {
-        Debug.Log("im idle");
+        npc.facingDirection = PlayerManager.instance.PlayerDirection(rb);
+        // Search for a target
+        npc.targeter.FindTarget(0f);
     }
 
     public void FixedTick()
     {
-        npc.facingDirection = PlayerManager.instance.PlayerDirection(rb);
+        rb.constraints =  RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void OnExit()

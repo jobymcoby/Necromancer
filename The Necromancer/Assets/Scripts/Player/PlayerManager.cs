@@ -17,6 +17,6 @@ public class PlayerManager : MonoBehaviour
     public GameObject player;
     public Vector2 PlayerDirection(Rigidbody2D rb)
     {
-        return (rb.position - (Vector2)player.transform.position).normalized;
+        return ((Vector2)player.transform.position - rb.position).normalized;
     }
 }
