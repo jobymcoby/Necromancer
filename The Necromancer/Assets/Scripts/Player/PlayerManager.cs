@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour
         instance = this;
     }
     #endregion
-
+    // Set in unity
     public GameObject player;
     public Vector2 PlayerDirection(Rigidbody2D rb)
     {

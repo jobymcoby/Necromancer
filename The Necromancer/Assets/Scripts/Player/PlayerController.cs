@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour, IDamagable
     public Camera cam;
     public Ray clickRay;
     public HealthSystem health;
+    public AggressionMatrix aggressionMatrix;
     [SerializeField] private LayerMask clickLayers;
-    [SerializeField] private const float maxHealth = 30f;
+    [SerializeField] private const float maxHealth = 15f;
 
 
     #region Arcane Bolt (Left Click)
@@ -28,6 +29,12 @@ public class PlayerController : MonoBehaviour, IDamagable
     private float resurrectCoolDown = 12f;
     private float resurrectTimer = 0.0f;
 
+    [SerializeField] private GameObject skeleton;
+    [SerializeField] private GameObject zombie;
+    [SerializeField] private GameObject ghoul;
+
+    private Dictionary<int, GameObject> UndeadSpellLog;
+    private int undeadSpell = 1;
     public delegate void ResurrectHandler(GameObject ally);
     public event ResurrectHandler ResurrectEvent;
     #endregion
@@ -37,12 +44,19 @@ public class PlayerController : MonoBehaviour, IDamagable
     public GameObject lifeDrainCircle;
     #endregion
 
-    void Start()
+    void Awake()
     {
-       
         health = new HealthSystem(maxHealth);
         lifeDrainCircle.SetActive(false);
         ResurrectEvent += Resurrect;
+        aggressionMatrix = new AggressionMatrix(this.tag);
+
+        UndeadSpellLog = new Dictionary<int, GameObject>()
+        {
+            { 1, skeleton },
+            { 2, zombie },
+            { 3, ghoul }
+        };
     }
 
     private void Resurrect(GameObject ally)
@@ -54,6 +68,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     void Update()
     {
+
         clickRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         // Left Click Polling (Spell)
@@ -85,6 +100,10 @@ public class PlayerController : MonoBehaviour, IDamagable
         {
             lifeDrainCircle.SetActive(false);
             lifeDrainAttackTimer = Time.time + lifeDrainCoolDown;
+        }
+         if (Input.GetKeyDown(KeyCode.F))
+        {
+            health.Damage(1);
         }
     }
 
@@ -119,7 +138,7 @@ public class PlayerController : MonoBehaviour, IDamagable
                 {
                     // Restore Health, add to Horde
                     ResurrectEvent?.Invoke(hit.collider.gameObject);
-                    hit.collider.gameObject.GetComponent<NPCController>().rez = true;
+                    hit.collider.gameObject.GetComponent<NPCController>().Resurrect(undeadSpell, UndeadSpellLog[undeadSpell]);
                     resurrectTimer = Time.time + resurrectCoolDown;
                 }
                 else

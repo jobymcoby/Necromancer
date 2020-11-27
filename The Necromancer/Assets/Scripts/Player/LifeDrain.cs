@@ -25,22 +25,31 @@ public class LifeDrain : DynamicTriggerListener
     }
 
     // Triggers get the gameobjects to deal damage to
-    public override void OnDynamicTriggerEnter2D(Collider2D other)
+    public override void OnDynamicTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.tag == "Enemy")
+        try
         {
-            DealDamage += other.gameObject.GetComponent<NPCHealth>().Damage;
-            enemyMultiplier++;
+            bool aggroVal = player.aggressionMatrix.CheckAggression(collision.gameObject.tag);
+        }
+        catch (KeyNotFoundException e1)
+        {
+
+            throw;
+        }
+        finally
+        {
+            if (player.aggressionMatrix.CheckAggression(collision.gameObject.tag))
+            {
+                DealDamage += collision.gameObject.GetComponent<NPCHealth>().Damage;
+                enemyMultiplier++;
+            }
         }
     }
 
     public override void OnDynamicTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy")
-        {
-            DealDamage -= other.gameObject.GetComponent<NPCHealth>().Damage;
-            enemyMultiplier--;
-        }
+        DealDamage -= other.gameObject.GetComponent<NPCHealth>().Damage;
+        enemyMultiplier--;
     }
 
     // Damage is dealt every .2 seconds
@@ -48,5 +57,20 @@ public class LifeDrain : DynamicTriggerListener
     {
         DealDamage?.Invoke(drainSpeed);                      
         player.Heal(drainSpeed * drainConversion * enemyMultiplier);   
+    }
+
+    private void killGrass()
+    {
+        GrassTileManager.instance.StartDeathCircle(transform.position);
+    }
+
+    private void OnEnable()
+    {
+        InvokeRepeating("killGrass", 0, 0.1f);
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke();
     }
 }

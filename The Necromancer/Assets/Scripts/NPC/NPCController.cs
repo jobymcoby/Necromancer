@@ -10,80 +10,85 @@ public class NPCController : MonoBehaviour
     public NPCHealth npcHealth;
     public Vector2 facingDirection;
     public NPCTargeting targeter;
-    public string state;
+    public string currentState;
     
     // make trigger
     public bool rez = false;
+    public delegate void UndeathHappens(int undeadMode,GameObject undead);
+    public event UndeathHappens ResurrectAnimation;
 
-    private NPCGFX npcGFX;
+    private NPCGraphicsBase npcGFX;
+
     private Rigidbody2D rb;
     private Collider2D hitBox;
     private StateMachine stateMachine;
-    private MeleeAttackController meleeAttack;
+    private IAttack attackAction;
     public AggressionMatrix aggressionMatrix;
 
     private void Awake()
     {
-        
+        #region Access components that are affected by the state
         rb = GetComponent<Rigidbody2D>();
         hitBox = GetComponent<Collider2D>();
         npcHealth = GetComponent<NPCHealth>();
-
         targeter = GetComponentInChildren<NPCTargeting>();
-        npcGFX = GetComponentInChildren<NPCGFX>();
+        npcGFX = GetComponentInChildren<NPCGraphicsBase>();
 
-        meleeAttack = GetComponentInChildren<MeleeAttackController>();
-        float attackRangeSqr = Mathf.Pow(meleeAttack.attackRange,2f);
+        Component attackComp = gameObject.GetComponentInChildren(typeof(IAttack));
+        Debug.Log(attackComp.GetType());
+        attackAction = attackComp as IAttack;
+        float attackRangeSqr = attackAction.AttackRangeSqr();
 
         aggressionMatrix = new AggressionMatrix(this.tag);
+        #endregion
 
         #region State Machine Setup
         // States
         stateMachine = new StateMachine();
         var idle = new Idle(this, rb);
         var move = new MoveToPosition(this, rb, npcData);
-        var attack = new Attack(this, rb, npcGFX);
+        var attack = new Attack(this, rb, attackAction);
         var corpse = new Corpse(gameObject, rb, hitBox);
         var undead = new Undead(gameObject, rb, hitBox);
 
         // State transition conditions
-        Func<bool> OnTarget() => () => targeter.Target != null;
-        Func<bool> OffTarget() => () => !OnTarget().Invoke();
-        Func<bool> OnDied() => () => npcHealth.health.Current() == 0;
+        Func<bool> OnTarget() => () => targeter.Target != null;                         // When the npc finds a target                         
+        Func<bool> OffTarget() => () => !OnTarget().Invoke();                           // When the npc loses a target
+        Func<bool> OnDied() => () => npcHealth.health.Current() == 0;                   // NPC health is below zero,
         Func<bool> OnRez() => () => rez == true;
-        Func<bool> InRange() => () => targeter.Distance.sqrMagnitude <= attackRangeSqr;
-        Func<bool> NewTarget() => () => !InRange().Invoke() && OnTarget().Invoke();
+        Func<bool> InRange() => () => targeter.Distance.sqrMagnitude <= attackRangeSqr; // Target is within attack range
+        Func<bool> NewTarget() => () => !InRange().Invoke() && OnTarget().Invoke();     // Target is not in range but instantiated
         // Func<bool> InCoolDown() => () => !cooldown up.
 
-        // Set State transitions
+
+        // Helper for adding state  machine transitions
         void At(IState from, IState to, Func<bool> condition) => stateMachine.AddTransition(from, to, condition);
-        At(idle, move, OnTarget());
-        At(move, attack, InRange());
-        At(attack, move, NewTarget());
-        At(attack, idle, OffTarget());
-        At(move, idle, OffTarget());
-
-        At(idle, corpse, OnDied());
-        At(move, corpse, OnDied());
-        At(attack, corpse, OnDied());
-
-        At(corpse, undead, OnRez());
+        
+        // State Transitions
+        At(idle, move, OnTarget());                         // When idling, move when you have a target
+        At(move, attack, InRange());                        // When moving to target, attack when you are in range
+        At(attack, move, NewTarget());                      // When attacking, and target is out of range, move
+        At(attack, idle, OffTarget());                      // When attacking and no targets, idle
+        At(move, idle, OffTarget());                        // When moving and no targets, idle
+        stateMachine.AddAnyTransition(corpse, OnDied());    // Anytime health is below 0, die
 
         // Set first state to alive
         stateMachine.SetState(idle);
+
+        // Connect logic to Graphics here
+        // These are sent by the state machine to the graphics script
+        attack.AttackAnimation += npcGFX.AttackSwitch;
+        corpse.DeathAnimation += npcGFX.Die;
+        ResurrectAnimation += npcGFX.Resurrect;
         #endregion
     }
 
     private void Update()
     {
         stateMachine.Tick();
-        state = stateMachine.currentState;
 
-        // death check? probably make this an event
-        if (npcHealth.health.Current() <= 0)
-        {
-            Destroy(gameObject);
-        }
+        // Debug to Inspector
+        currentState = stateMachine.currentState;
     }
 
     private void FixedUpdate()
@@ -91,10 +96,9 @@ public class NPCController : MonoBehaviour
         stateMachine.FixedTick();
     }
 
-    private void LateUpdate()
+    public void Resurrect(int undeadMode, GameObject undeadPrefab)
     {
-        // reset rez after transition
-        if (rez == true) rez = !rez;
+        ResurrectAnimation?.Invoke(undeadMode, undeadPrefab);
     }
 
     public IEnumerator Grappled()

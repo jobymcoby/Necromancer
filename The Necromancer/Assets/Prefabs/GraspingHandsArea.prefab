@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 308079643126484144}
   - component: {fileID: 4516362381476386004}
-  m_Layer: 15
+  m_Layer: 11
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,8 @@ GameObject:
   - component: {fileID: 6449394743259109006}
   - component: {fileID: 3260051704531562008}
   - component: {fileID: 1454515470}
-  m_Layer: 15
+  - component: {fileID: -3525464317117852603}
+  m_Layer: 11
   m_Name: GraspingHandsArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,3 +144,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.87
+--- !u!114 &-3525464317117852603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6449394743259109009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9a6641ea4c16c49828f3e8825259b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

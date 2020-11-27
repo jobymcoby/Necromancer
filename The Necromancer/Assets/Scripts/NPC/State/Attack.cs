@@ -7,24 +7,24 @@ public class Attack : IState
 {
     private NPCController npc;
     private Rigidbody2D rb;
-    private NPCGFX npcGFX;
+    private IAttack attackType;
 
-    public Attack(NPCController npc, Rigidbody2D rb, NPCGFX npcGFX)
+    public delegate void AttackInitiate(bool val);
+    public event AttackInitiate AttackAnimation;
+
+    public Attack(NPCController npc, Rigidbody2D rb, IAttack attackType)
     {
         this.npc = npc;
         this.rb = rb;
-        this.npcGFX = npcGFX;
+        this.attackType = attackType;
     }
 
     public void OnEnter()
     {
-        npcGFX.animator.SetBool("Attacking",true);
+        AttackAnimation?.Invoke(true);
     }
 
-    public void Tick()
-    {
-
-    }
+    public void Tick() { }
 
     public void FixedTick()
     {
@@ -33,7 +33,7 @@ public class Attack : IState
 
     public void OnExit()
     {
-        npcGFX.animator.SetBool("Attacking", false);
+        AttackAnimation?.Invoke(false);
         npc.targeter.FindTarget(0);
     }
 }

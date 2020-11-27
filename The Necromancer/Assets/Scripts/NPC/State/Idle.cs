@@ -28,11 +28,11 @@ public class Idle : IState
 
     public void FixedTick()
     {
-        rb.constraints =  RigidbodyConstraints2D.FreezeRotation;
+        
     }
 
     public void OnExit()
     {
-        
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }

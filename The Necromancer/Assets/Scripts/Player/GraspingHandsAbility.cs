@@ -2,22 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GraspingHandsAbility : MonoBehaviour
+public class GraspingHandsAbility : DynamicTriggerListener
 {
     public float graspingHandsRadius = 1f;
+    private PlayerController player;
 
     void Start()
     {
+        player = GetComponentInParent<PlayerController>();
         transform.localScale = new Vector3(graspingHandsRadius, graspingHandsRadius, 0);
         Destroy(this.gameObject, PlayerController.graspingHandsEffectTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D enemy)
+    public override void OnDynamicTriggerEnter2D(Collider2D collision)
     {
-        if (enemy.gameObject.tag == "Enemy")
+        if (player.aggressionMatrix.CheckAggression(collision.gameObject.tag))
         {
-            StartCoroutine(enemy.gameObject.GetComponent<NPCController>().Grappled());
+            StartCoroutine(collision.gameObject.GetComponent<NPCController>().Grappled());
         }
+    }
+
+    public override void OnDynamicTriggerExit2D(Collider2D other)
+    {
+        
     }
 }
  

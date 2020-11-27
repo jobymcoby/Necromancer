@@ -13,7 +13,6 @@ public class NPCTargeting : DynamicTriggerListener
     private List<GameObject> enemies = new List<GameObject>();
     private CircleCollider2D range;
     private float detectionRate;
-
     #endregion
 
     #region Pathfinding
@@ -68,15 +67,21 @@ public class NPCTargeting : DynamicTriggerListener
 
     public override void OnDynamicTriggerEnter2D(Collider2D collision)
     {
+        // get the 4th child (feet)'s transform
+        GameObject temp = collision.gameObject.transform.GetChild(2).gameObject;
         if (collision.gameObject.tag == enemyTag)
-            enemies.Add(collision.gameObject);
-        if (gameObject.tag == "Enemy" && collision.gameObject.tag == "Player") enemies.Add(collision.gameObject);
+            enemies.Add(temp);
+        if (gameObject.tag == "Enemy" && collision.gameObject.tag == "Player") enemies.Add(temp);
     }
 
     public override void OnDynamicTriggerExit2D(Collider2D collision)
     {
-        if (enemies.Contains(collision.gameObject)) enemies.Remove(collision.gameObject);
-        if (gameObject.tag == "Enemy" && collision.gameObject.tag == "Player") enemies.Remove(collision.gameObject);
+        if (collision.gameObject != null)
+        {
+            GameObject temp = collision.gameObject.transform.GetChild(2).gameObject;
+            if (enemies.Contains(temp)) enemies.Remove(temp);
+            if (gameObject.tag == "Enemy" && collision.gameObject.tag == "Player") enemies.Remove(temp);
+        }
     }
 
     public void CreatePath()

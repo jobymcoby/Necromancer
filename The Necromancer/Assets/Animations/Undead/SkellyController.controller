@@ -265,7 +265,7 @@ BlendTree:
     m_DirectBlendParameter: LookX
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: b04ebcf0ad2609b468d502f45153e910, type: 2}
+    m_Motion: {fileID: 7400000, guid: 8ac1ae23129bdd44da47a0400bebe344, type: 2}
     m_Threshold: 0.6666667
     m_Position: {x: 0.61, y: 0.75}
     m_TimeScale: 1
@@ -273,7 +273,7 @@ BlendTree:
     m_DirectBlendParameter: LookX
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 8ac1ae23129bdd44da47a0400bebe344, type: 2}
+    m_Motion: {fileID: 7400000, guid: b04ebcf0ad2609b468d502f45153e910, type: 2}
     m_Threshold: 0.8333333
     m_Position: {x: -0.61, y: 0.75}
     m_TimeScale: 1
@@ -329,25 +329,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: LookY
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Velocity
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attacking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
