@@ -8,7 +8,7 @@ public class FourD_NPCGFX : NPCGraphicsBase
     {
         // Set Y
         animator.SetFloat("Look Y", npc.facingDirection.y);
-        // Set  x scale to Y magnitude
+        // Set X to the magnitude of they Y value, + values are rightfacing, - leftfacing
         ScaleCoordinateValue(npc.facingDirection.x);
         animator.SetFloat("Velocity", rb.velocity.magnitude);
     }

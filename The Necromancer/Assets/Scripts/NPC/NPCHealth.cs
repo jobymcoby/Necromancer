@@ -5,13 +5,12 @@ using UnityEngine;
 public class NPCHealth : MonoBehaviour, IDamagable
 {
     public HealthSystem health;
-    private HealthBar healthBar;
+    public HealthBar healthBar;
     private NPCData npcData;
 
     private void Awake()
     {
-        healthBar = GetComponentInChildren<HealthBar>();
-        npcData = GetComponent<NPCController>().npcData;
+        npcData = GetComponentInParent<NPCController>().npcData;
     }
     
     void Start()

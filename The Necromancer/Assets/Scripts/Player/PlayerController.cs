@@ -129,7 +129,6 @@ public class PlayerController : MonoBehaviour, IDamagable
         hit = Physics2D.Raycast(clickRay.origin, clickRay.direction, 20f, clickLayers);
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.gameObject.name);
             // Resurrect
             if (hit.collider.gameObject.tag == "Corpse")
             {
@@ -138,7 +137,7 @@ public class PlayerController : MonoBehaviour, IDamagable
                 {
                     // Restore Health, add to Horde
                     ResurrectEvent?.Invoke(hit.collider.gameObject);
-                    hit.collider.gameObject.GetComponent<NPCController>().Resurrect(undeadSpell, UndeadSpellLog[undeadSpell]);
+                    hit.collider.gameObject.GetComponentInParent<NPCController>().Resurrect(undeadSpell, UndeadSpellLog[undeadSpell]);
                     resurrectTimer = Time.time + resurrectCoolDown;
                 }
                 else

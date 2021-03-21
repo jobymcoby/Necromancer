@@ -6,23 +6,26 @@ public class RangedAttackBase : MonoBehaviour, IAttack
 {
     public GameObject projectilePrefab;
     public GameObject firePos;
-    public float projectileMagnitude = 20f;
+
     private NPCController npc;
-    public float attackRange = 7f;
+    private float projectileMagnitude;
+    private float attackRange;
+    private float attackDamage;
+    private ProjectileController projController;
 
-    public float AttackRangeSqr()
-    {
-        // Sends Attack Range sqred to the NPC controller
-        return Mathf.Pow(attackRange, 2f);
-    }
-
-    private void Awake()
+    private void Start()
     {
         npc = GetComponentInParent<NPCController>();
+
+        attackDamage = npc.npcData.attack1.attackDamage;
+        projectileMagnitude = npc.npcData.attack1.projectileForce;
     } 
 
+    // Called from an animation event when the character looks like they are firing, 
+    // this is only called on the front facing animation and the blend tree makes it work for all anims.
     public void FireArrow()
     {
+        // Vector from shooter to target
         Vector2 projectileDirection = npc.targeter.Distance.normalized;
 
         float rotation = 0;
@@ -55,7 +58,11 @@ public class RangedAttackBase : MonoBehaviour, IAttack
 
         GameObject arrow = SetArrowDirectio(cardinalDirection, rotation);
         rb = arrow.GetComponentInChildren<Rigidbody2D>();
-        rb.AddForce(projectileDirection*projectileMagnitude, ForceMode2D.Impulse);
+        projController = arrow.GetComponent<ProjectileController>();
+        projController.damage = attackDamage;
+        // Debug.Log("direction = " + projectileDirection + ". magniude = " + projectileMagnitude);
+
+        rb.AddForce(projectileDirection * projectileMagnitude, ForceMode2D.Impulse);
     }
 
     private GameObject SetArrowDirectio(Vector2 normilzedDir, float rotation)

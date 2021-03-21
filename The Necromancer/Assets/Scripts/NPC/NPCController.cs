@@ -11,9 +11,11 @@ public class NPCController : MonoBehaviour
     public Vector2 facingDirection;
     public NPCTargeting targeter;
     public string currentState;
-    
+
+    [SerializeField] private GameObject body;
+    [SerializeField] private GameObject feet;
+
     // make trigger
-    public bool rez = false;
     public delegate void UndeathHappens(int undeadMode,GameObject undead);
     public event UndeathHappens ResurrectAnimation;
 
@@ -28,16 +30,16 @@ public class NPCController : MonoBehaviour
     private void Awake()
     {
         #region Access components that are affected by the state
-        rb = GetComponent<Rigidbody2D>();
-        hitBox = GetComponent<Collider2D>();
-        npcHealth = GetComponent<NPCHealth>();
+        rb = GetComponent<Rigidbody2D>(); 
+        hitBox = body.GetComponent<Collider2D>();
+        npcHealth = body.GetComponent<NPCHealth>();
         targeter = GetComponentInChildren<NPCTargeting>();
         npcGFX = GetComponentInChildren<NPCGraphicsBase>();
 
         Component attackComp = gameObject.GetComponentInChildren(typeof(IAttack));
         Debug.Log(attackComp.GetType());
         attackAction = attackComp as IAttack;
-        float attackRangeSqr = attackAction.AttackRangeSqr();
+        float attackRangeSqr = Mathf.Pow(npcData.attack1.attackRange, 2f);
 
         aggressionMatrix = new AggressionMatrix(this.tag);
         #endregion
@@ -48,14 +50,12 @@ public class NPCController : MonoBehaviour
         var idle = new Idle(this, rb);
         var move = new MoveToPosition(this, rb, npcData);
         var attack = new Attack(this, rb, attackAction);
-        var corpse = new Corpse(gameObject, rb, hitBox);
-        var undead = new Undead(gameObject, rb, hitBox);
+        var corpse = new Corpse(gameObject, rb, hitBox, body, feet);
 
         // State transition conditions
         Func<bool> OnTarget() => () => targeter.Target != null;                         // When the npc finds a target                         
         Func<bool> OffTarget() => () => !OnTarget().Invoke();                           // When the npc loses a target
         Func<bool> OnDied() => () => npcHealth.health.Current() == 0;                   // NPC health is below zero,
-        Func<bool> OnRez() => () => rez == true;
         Func<bool> InRange() => () => targeter.Distance.sqrMagnitude <= attackRangeSqr; // Target is within attack range
         Func<bool> NewTarget() => () => !InRange().Invoke() && OnTarget().Invoke();     // Target is not in range but instantiated
         // Func<bool> InCoolDown() => () => !cooldown up.

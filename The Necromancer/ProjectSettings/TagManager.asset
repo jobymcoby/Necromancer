@@ -19,15 +19,15 @@ TagManager:
   - 
   - 
   - Ground
-  - Body
+  - Ally Hurtbox
   - Obstacle
   - Feet
   - Sight
   - Attack Hitbox
-  - Projectiles
+  - Ally Hitbox
   - Player
-  - 
-  - 
+  - Enemy Hurtbox
+  - Enemy Hitbox
   - 
   - 
   - 
@@ -49,6 +49,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Obstacle
+    uniqueID: 3716275313
+    locked: 0
   - name: Player
     uniqueID: 1191079347
+    locked: 0
+  - name: New Layer
+    uniqueID: 2188281515
     locked: 0

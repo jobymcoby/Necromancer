@@ -6,11 +6,19 @@ using UnityEngine;
 public class NPCData : ScriptableObject
 {
     public string title;
-    public float moveSpeed;
     public float maxHealth;
+
+    // Movement
+    public float moveSpeed;
     public float holdTime;
+
+    // Enemy Detection
     public float detectionRange;
     public float detectionRate;
+
+    // Animator
     public RuntimeAnimatorController animator;
+
+    public NPCAttackData attack1;
 
 }

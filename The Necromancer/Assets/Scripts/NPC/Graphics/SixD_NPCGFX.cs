@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SixD_NPCGFX : NPCGraphicsBase
 {
-
     void Update()
     {
         animator.SetFloat("LookX", npc.facingDirection.x);
@@ -12,5 +11,3 @@ public class SixD_NPCGFX : NPCGraphicsBase
         animator.SetFloat("Velocity", rb.velocity.magnitude);
     }
 }
-
-

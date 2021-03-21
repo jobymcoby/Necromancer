@@ -24,7 +24,9 @@ public class PlayerMovement : MonoBehaviour
         #region Movement Polling
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        movement = movement.normalized;
         #endregion
+
 
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 

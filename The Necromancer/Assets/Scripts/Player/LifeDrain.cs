@@ -33,7 +33,6 @@ public class LifeDrain : DynamicTriggerListener
         }
         catch (KeyNotFoundException e1)
         {
-
             throw;
         }
         finally
@@ -46,15 +45,30 @@ public class LifeDrain : DynamicTriggerListener
         }
     }
 
-    public override void OnDynamicTriggerExit2D(Collider2D other)
+    public override void OnDynamicTriggerExit2D(Collider2D collision)
     {
-        DealDamage -= other.gameObject.GetComponent<NPCHealth>().Damage;
-        enemyMultiplier--;
+        try
+        {
+            bool aggroVal = player.aggressionMatrix.CheckAggression(collision.gameObject.tag);
+        }
+        catch (KeyNotFoundException e1)
+        {
+            throw;
+        }
+        finally
+        {
+            if (player.aggressionMatrix.CheckAggression(collision.gameObject.tag))
+            {
+                DealDamage -= collision.gameObject.GetComponent<NPCHealth>().Damage;
+                enemyMultiplier--;
+            }
+        }
     }
 
     // Damage is dealt every .2 seconds
     private void FixedUpdate()
     {
+        Debug.Log(enemyMultiplier);
         DealDamage?.Invoke(drainSpeed);                      
         player.Heal(drainSpeed * drainConversion * enemyMultiplier);   
     }
@@ -72,5 +86,6 @@ public class LifeDrain : DynamicTriggerListener
     private void OnDisable()
     {
         CancelInvoke();
+        enemies.Clear();
     }
 }

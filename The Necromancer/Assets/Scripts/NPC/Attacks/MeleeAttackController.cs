@@ -6,7 +6,8 @@ using System.Linq;
 
 public class MeleeAttackController : DynamicTriggerListener, IAttack
 {
-    public float attackRange = .9f;
+    private float attackRange = .9f;
+    private float attackDamage = .25f;
     private NPCController npc;
     private List<NPCHealth> enemies = new List<NPCHealth>();
     private NPCHealth targetEnemy = null;
@@ -17,7 +18,10 @@ public class MeleeAttackController : DynamicTriggerListener, IAttack
 
     private void Awake()
     {
+
         npc = GetComponentInParent<NPCController>();
+        attackRange = npc.npcData.attack1.attackRange;
+        attackDamage = npc.npcData.attack1.attackDamage;
     }
 
     public override void OnDynamicTriggerEnter2D(Collider2D collision)
@@ -25,7 +29,8 @@ public class MeleeAttackController : DynamicTriggerListener, IAttack
         if (npc.aggressionMatrix.CheckAggression(collision.gameObject.tag))
         {
             NPCHealth enemy = collision.gameObject.GetComponent<NPCHealth>();
-            enemy?.Damage(.25f);
+            enemy?.Damage(attackDamage);
+
             enemies.Add(enemy);
             if (targetEnemy == null)
             {
@@ -49,11 +54,5 @@ public class MeleeAttackController : DynamicTriggerListener, IAttack
                 else targetEnemy = enemies.First();
             }
         }
-    }
-
-    public float AttackRangeSqr()
-    {
-        // Sends Attack Range sqred to the NPC controller
-        return Mathf.Pow(attackRange, 2f);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpritePositionManager : MonoBehaviour
 {
     [SerializeField] private int sortOrderBase = 50000;
-    [SerializeField] private int offset;
+    [SerializeField] private int offset = 0;
     // If this object cannot move we run this script once after the update and destroy this component
     [SerializeField] private bool canMove = true;
 

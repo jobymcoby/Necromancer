@@ -21,10 +21,17 @@ public class Attack : IState
 
     public void OnEnter()
     {
-        AttackAnimation?.Invoke(true);
+        rb.velocity = Vector2.zero;
     }
 
-    public void Tick() { }
+    public void Tick()
+    {
+        AttackAnimation?.Invoke(true);
+
+        // Check for new target
+        npc.targeter.FindTarget(cooldown: 5f);
+    }
+
 
     public void FixedTick()
     {

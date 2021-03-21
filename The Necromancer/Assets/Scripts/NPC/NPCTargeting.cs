@@ -25,7 +25,7 @@ public class NPCTargeting : DynamicTriggerListener
     private Vector2 direction;
     #endregion
 
-    #region Agression Matrix
+    #region Aggression Matrix
     private string enemyTag;
     #endregion
 
@@ -59,16 +59,24 @@ public class NPCTargeting : DynamicTriggerListener
         {
             enemyTag = "Undead";
         }
-        else if(gameObject.tag == "Undead")
+        else if (gameObject.tag == "Undead")
         {
             enemyTag = "Enemy";
         }
     }
 
+    public  void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
+
     public override void OnDynamicTriggerEnter2D(Collider2D collision)
     {
-        // get the 4th child (feet)'s transform
-        GameObject temp = collision.gameObject.transform.GetChild(2).gameObject;
+        //
+        GameObject temp = collision.gameObject;
+        Debug.Log("This: " + transform.parent + " found: " + collision.gameObject.name);
+
+
         if (collision.gameObject.tag == enemyTag)
             enemies.Add(temp);
         if (gameObject.tag == "Enemy" && collision.gameObject.tag == "Player") enemies.Add(temp);
@@ -76,9 +84,10 @@ public class NPCTargeting : DynamicTriggerListener
 
     public override void OnDynamicTriggerExit2D(Collider2D collision)
     {
+        Debug.Log("This: " + transform.parent + " lost: " + collision.gameObject.name);
         if (collision.gameObject != null)
         {
-            GameObject temp = collision.gameObject.transform.GetChild(2).gameObject;
+            GameObject temp = collision.gameObject;
             if (enemies.Contains(temp)) enemies.Remove(temp);
             if (gameObject.tag == "Enemy" && collision.gameObject.tag == "Player") enemies.Remove(temp);
         }

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   title: Skeleton
+  maxHealth: 65.82
   moveSpeed: 3
-  maxHealth: 5
   holdTime: 0
   detectionRange: 10
   detectionRate: 0.3
   animator: {fileID: 9100000, guid: c4782efea66ddfb468120add0a3d004e, type: 2}
+  attack1: {fileID: 11400000, guid: 9a4d904fdcbf75344b5382ec0f66c2d7, type: 2}
