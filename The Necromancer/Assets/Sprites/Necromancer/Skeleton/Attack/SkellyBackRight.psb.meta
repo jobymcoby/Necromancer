@@ -1342,14 +1342,14 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 206
     mosaicPosition: {x: 0, y: 0}
   - name: Bones
     spriteName: 
     isGroup: 1
     parentIndex: 0
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 204
     mosaicPosition: {x: 0, y: 0}
   - name: Head
@@ -1405,14 +1405,14 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 504
     mosaicPosition: {x: 0, y: 0}
   - name: Bones
     spriteName: 
     isGroup: 1
     parentIndex: 9
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 503
     mosaicPosition: {x: 0, y: 0}
   - name: RightArm
@@ -1531,14 +1531,14 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 471
     mosaicPosition: {x: 0, y: 0}
   - name: Bones
     spriteName: 
     isGroup: 1
     parentIndex: 27
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 470
     mosaicPosition: {x: 0, y: 0}
   - name: RightArm
@@ -1594,14 +1594,14 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 458
     mosaicPosition: {x: 0, y: 0}
   - name: Bones
     spriteName: 
     isGroup: 1
     parentIndex: 36
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 457
     mosaicPosition: {x: 0, y: 0}
   - name: RightArm
@@ -1657,14 +1657,14 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 447
     mosaicPosition: {x: 0, y: 0}
   - name: Bones
     spriteName: 
     isGroup: 1
     parentIndex: 45
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 446
     mosaicPosition: {x: 0, y: 0}
   - name: Right Arm
@@ -1720,14 +1720,14 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 436
     mosaicPosition: {x: 0, y: 0}
   - name: Bones
     spriteName: 
     isGroup: 1
     parentIndex: 54
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 435
     mosaicPosition: {x: 0, y: 0}
   - name: Right Arm
@@ -1783,14 +1783,14 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 417
     mosaicPosition: {x: 0, y: 0}
   - name: Bones
     spriteName: 
     isGroup: 1
     parentIndex: 63
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 416
     mosaicPosition: {x: 0, y: 0}
   - name: Right Arm

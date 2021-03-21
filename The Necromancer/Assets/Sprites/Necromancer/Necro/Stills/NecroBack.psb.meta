@@ -418,7 +418,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 231
     mosaicPosition: {x: 0, y: 0}
   - name: Hood
@@ -432,7 +432,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 0
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 222
     mosaicPosition: {x: 0, y: 0}
   - name: Cloak
@@ -453,7 +453,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 0
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 230
     mosaicPosition: {x: 0, y: 0}
   - name: LArm
@@ -495,7 +495,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 0
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 218
     mosaicPosition: {x: 0, y: 0}
   - name: Head

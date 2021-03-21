@@ -3630,14 +3630,14 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 212
     mosaicPosition: {x: 0, y: 0}
   - name: Patches
     spriteName: 
     isGroup: 1
     parentIndex: 0
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 266
     mosaicPosition: {x: 0, y: 0}
   - name: Patch1
@@ -3672,7 +3672,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 0
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 215
     mosaicPosition: {x: 0, y: 0}
   - name: SB
@@ -3763,14 +3763,14 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 0
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 218
     mosaicPosition: {x: 0, y: 0}
   - name: Connections
     spriteName: 
     isGroup: 1
     parentIndex: 19
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 222
     mosaicPosition: {x: 0, y: 0}
   - name: DCTL4
@@ -3945,7 +3945,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 149
     mosaicPosition: {x: 0, y: 0}
   - name: Grass3
@@ -3959,7 +3959,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 45
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 152
     mosaicPosition: {x: 0, y: 0}
   - name: SL
@@ -4050,14 +4050,14 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 45
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 154
     mosaicPosition: {x: 0, y: 0}
   - name: Connections
     spriteName: 
     isGroup: 1
     parentIndex: 60
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 157
     mosaicPosition: {x: 0, y: 0}
   - name: DCTR4
@@ -4232,7 +4232,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 45
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 272
     mosaicPosition: {x: 0, y: 0}
   - name: Patch2
@@ -4260,7 +4260,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 102
     mosaicPosition: {x: 0, y: 0}
   - name: Grass2
@@ -4274,7 +4274,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 90
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 104
     mosaicPosition: {x: 0, y: 0}
   - name: C1TL
@@ -4365,7 +4365,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 90
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 106
     mosaicPosition: {x: 0, y: 0}
   - name: DBR1
@@ -4428,7 +4428,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 105
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 108
     mosaicPosition: {x: 0, y: 0}
   - name: DCBL1
@@ -4547,7 +4547,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 90
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 278
     mosaicPosition: {x: 0, y: 0}
   - name: Patch1
@@ -4575,7 +4575,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 4
     mosaicPosition: {x: 0, y: 0}
   - name: Grass1
@@ -4589,7 +4589,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 135
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 52
     mosaicPosition: {x: 0, y: 0}
   - name: ST
@@ -4680,14 +4680,14 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 135
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 57
     mosaicPosition: {x: 0, y: 0}
   - name: Diagonal Connectors
     spriteName: 
     isGroup: 1
     parentIndex: 150
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 67
     mosaicPosition: {x: 0, y: 0}
   - name: DCBL4
@@ -4862,7 +4862,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 135
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 286
     mosaicPosition: {x: 0, y: 0}
   - name: Patch3

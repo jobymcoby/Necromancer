@@ -440,14 +440,14 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 350
     mosaicPosition: {x: 0, y: 0}
   - name: Top Clothes
     spriteName: 
     isGroup: 1
     parentIndex: 0
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 349
     mosaicPosition: {x: 0, y: 0}
   - name: Book
@@ -489,7 +489,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 0
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 342
     mosaicPosition: {x: 0, y: 0}
   - name: Cloak
@@ -510,7 +510,7 @@ ScriptedImporter:
     spriteName: 
     isGroup: 1
     parentIndex: 0
-    spriteID: 
+    spriteID: 00000000000000000000000000000000
     layerID: 338
     mosaicPosition: {x: 0, y: 0}
   - name: Head
