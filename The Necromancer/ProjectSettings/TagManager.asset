@@ -9,6 +9,7 @@ TagManager:
   - Corpse
   - Ground
   - Undead
+  - Dead
   layers:
   - Default
   - TransparentFX
