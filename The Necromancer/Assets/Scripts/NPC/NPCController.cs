@@ -8,7 +8,7 @@ public class NPCController : MonoBehaviour
 {
     public NPCData npcData;
     public NPCHealth npcHealth;
-    public Vector2 facingDirection;
+    public Vector2 facingDirection = Vector2.zero;
     public NPCTargeting targeter;
     public string currentState;
 
@@ -37,7 +37,6 @@ public class NPCController : MonoBehaviour
         npcGFX = GetComponentInChildren<NPCGraphicsBase>();
 
         Component attackComp = gameObject.GetComponentInChildren(typeof(IAttack));
-        Debug.Log(attackComp.GetType());
         attackAction = attackComp as IAttack;
         float attackRangeSqr = Mathf.Pow(npcData.attack1.attackRange, 2f);
 
@@ -48,7 +47,7 @@ public class NPCController : MonoBehaviour
         // States
         stateMachine = new StateMachine();
         var idle = new Idle(this, rb);
-        var move = new MoveToPosition(this, rb, npcData);
+        var move = new MoveToPosition(this, rb, npcData, feet);
         var attack = new Attack(this, rb, attackAction);
         var corpse = new Corpse(gameObject, rb, hitBox, body, feet);
 
@@ -74,20 +73,21 @@ public class NPCController : MonoBehaviour
 
         // Set first state to alive
         stateMachine.SetState(idle);
+        #endregion
 
         // Connect logic to Graphics here
         // These are sent by the state machine to the graphics script
         attack.AttackAnimation += npcGFX.AttackSwitch;
         corpse.DeathAnimation += npcGFX.Die;
         ResurrectAnimation += npcGFX.Resurrect;
-        #endregion
+
     }
 
     private void Update()
     {
         stateMachine.Tick();
 
-        // Debug to Inspector
+        // Display to Inspector
         currentState = stateMachine.currentState;
     }
 

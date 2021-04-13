@@ -10,7 +10,10 @@ public class NPCTargeting : DynamicTriggerListener
     private enum WhoToTarget { Strongest, Weakest, Closest }
     [SerializeField] private WhoToTarget targetMethod;
     [SerializeField] private bool playerPrefered;
+
+    private AggressionMatrix aggressionMatrix;
     private List<GameObject> enemies = new List<GameObject>();
+    private List<GameObject> allies = new List<GameObject>();
     private CircleCollider2D range;
     private float detectionRate;
     #endregion
@@ -25,12 +28,9 @@ public class NPCTargeting : DynamicTriggerListener
     private Vector2 direction;
     #endregion
 
-    #region Aggression Matrix
-    private string enemyTag;
-    #endregion
-
     public Transform Target;
     private float targetResetTimer;
+    private float SquareAvoidanceRadius = 4.2f;
 
     public Vector2 Distance
     {
@@ -43,54 +43,98 @@ public class NPCTargeting : DynamicTriggerListener
         }
     }
 
-    private void Awake()
+    private void Start()
     {
+        aggressionMatrix = GetComponentInParent<NPCController>().aggressionMatrix;
         detectionRate = GetComponentInParent<NPCController>().npcData.detectionRate;
+        
+        //Setup Sight trigger
         float detectionRange = GetComponentInParent<NPCController>().npcData.detectionRange;
         range = GetComponent<CircleCollider2D>();
         range.isTrigger = true;
         range.radius = detectionRange;
 
         seeker = GetComponent<Seeker>();
-
-        // Choose aggressor
-        // Create an Agression matrix
-        if (gameObject.tag == "Enemy")
-        {
-            enemyTag = "Undead";
-        }
-        else if (gameObject.tag == "Undead")
-        {
-            enemyTag = "Enemy";
-        }
-    }
-
-    public  void OnTriggerEnter2D(Collider2D collision)
-    {
-        
     }
 
     public override void OnDynamicTriggerEnter2D(Collider2D collision)
     {
-        //
+        // Debug.Log("This: " + transform.parent + " found: " + collision.gameObject.name);
+        Debug.Log(aggressionMatrix.CheckAggression(collision.gameObject.tag));
         GameObject temp = collision.gameObject;
-        Debug.Log("This: " + transform.parent + " found: " + collision.gameObject.name);
 
-
-        if (collision.gameObject.tag == enemyTag)
+        // if the object has a tag that make me angry add them to the enemy list
+        if (aggressionMatrix.CheckAggression(collision.gameObject.tag))
             enemies.Add(temp);
-        if (gameObject.tag == "Enemy" && collision.gameObject.tag == "Player") enemies.Add(temp);
+        else
+            allies.Add(temp);
     }
 
     public override void OnDynamicTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("This: " + transform.parent + " lost: " + collision.gameObject.name);
+        // Debug.Log("This: " + transform.parent + " lost: " + collision.gameObject.name);
+
+        // if is to make sure noe errors if they died and cant get removed
         if (collision.gameObject != null)
         {
             GameObject temp = collision.gameObject;
             if (enemies.Contains(temp)) enemies.Remove(temp);
-            if (gameObject.tag == "Enemy" && collision.gameObject.tag == "Player") enemies.Remove(temp);
+            if (allies.Contains(temp)) allies.Remove(temp);
         }
+    }
+
+    public Vector2 AlignAllies()
+    {
+        Vector2 alignMove = Vector2.zero;
+
+        if (allies.Count == 0)
+            return alignMove;
+
+        foreach (GameObject ally in allies)
+            alignMove += ally.GetComponentInParent<NPCController>().facingDirection;
+
+        alignMove /= allies.Count;
+        return alignMove;
+    }
+
+    public Vector2 CohesionAllies(Transform agent)
+    {
+        Vector2 cohesionMove = Vector2.zero;
+
+        if (allies.Count == 0)
+            return cohesionMove;
+
+        foreach (GameObject ally in allies)
+            cohesionMove += (Vector2)ally.transform.position;
+
+        cohesionMove /= allies.Count;
+        cohesionMove -= (Vector2)agent.position;
+
+        return cohesionMove;
+    }
+
+    public Vector2 AvoidAllies(Transform agent)
+    {
+        Vector2 avoidMove = Vector2.zero;
+
+        if (allies.Count == 0)
+            return avoidMove;
+
+        int nAvoid = 0;
+
+        foreach (GameObject ally in allies)
+        {
+            if (Vector2.SqrMagnitude(ally.transform.position - agent.position) < SquareAvoidanceRadius)
+            {
+                nAvoid++;
+                avoidMove += (Vector2)(agent.position - ally.transform.position);
+            }
+        }
+
+        if (nAvoid > 0)
+            avoidMove /= nAvoid;
+
+        return avoidMove;
     }
 
     public void CreatePath()
@@ -110,7 +154,16 @@ public class NPCTargeting : DynamicTriggerListener
         }
     }
 
-    public Vector2 WalkDirection()
+    private void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+
+    public Vector2 PathDirection()
     {
         if (path == null)
             return Vector2.zero;
@@ -145,87 +198,84 @@ public class NPCTargeting : DynamicTriggerListener
         }
     }
 
-    private void OnPathComplete(Path p)
-    {
-        if (!p.error)
-        {
-            path = p;
-            currentWaypoint = 0;
-        }
-    }
-
     public void FindTarget(float cooldown)
     {
         Transform tempTarget = null;
         if (enemies.Count == 0) Target = tempTarget;
 
-        // Create a path on a fixed interval
+        // Cool down loop
         if (Time.time >= targetResetTimer)
         {
-            if (targetMethod == WhoToTarget.Closest)
+            // Switch 3 way to find a taget, usually closest or player prefered
+            switch (targetMethod)
             {
-                // Furthest target is at infinty
-                float closestDistanceSqr = Mathf.Infinity;
-                foreach (GameObject enemy in enemies)
-                {
-                    if (playerPrefered && enemy.tag == "Player")
-                    {
-                        tempTarget = enemy.transform;
-                        break;
-                    }
+                case WhoToTarget.Closest:
 
-                    Vector2 directionToTarget = enemy.transform.position - gameObject.transform.parent.gameObject.transform.position;
-                    float dSqrToTarget = directionToTarget.sqrMagnitude;
-                    if (dSqrToTarget < closestDistanceSqr)
+                    // Furthest target is at infinty
+                    float closestDistanceSqr = Mathf.Infinity;
+                    foreach (GameObject enemy in enemies)
                     {
-                        closestDistanceSqr = dSqrToTarget;
-                        tempTarget = enemy.transform;
-                    }
-                }
-                Target = tempTarget;
-            }
-            else if (targetMethod == WhoToTarget.Strongest)
-            {
-                // Furthest target is at infinty
-                float largestHealth = 0;
-                foreach (GameObject enemy in enemies)
-                {
-                    if (playerPrefered && enemy.tag == "Player")
-                    {
-                        tempTarget = enemy.transform;
-                        break;
-                    }
+                        if (playerPrefered && enemy.tag == "Player")
+                        {
+                            tempTarget = enemy.transform;
+                            break;
+                        }
 
-                    float enemyHealth = enemy.GetComponent<NPCHealth>().health.Current();
-                    if (enemyHealth > largestHealth)
-                    {
-                        largestHealth = enemyHealth;
-                        tempTarget = enemy.transform;
+                        Vector2 directionToTarget = enemy.transform.position - gameObject.transform.parent.gameObject.transform.position;
+                        float dSqrToTarget = directionToTarget.sqrMagnitude;
+                        if (dSqrToTarget < closestDistanceSqr)
+                        {
+                            closestDistanceSqr = dSqrToTarget;
+                            tempTarget = enemy.transform;
+                        }
                     }
-                }
-                Target = tempTarget;
-            }
-            else             //(targetMethod == WhoToTarget.Strongest)
-            {
-                // Furthest target is at infinty
-                float lowestHealth = Mathf.Infinity;
-                foreach (GameObject enemy in enemies)
-                {
-                    if (playerPrefered && enemy.tag == "Player")
-                    {
-                        tempTarget = enemy.transform;
-                        break;
-                    }
+                    Target = tempTarget;
+                    break;
 
-                    float enemyHealth = enemy.GetComponent<NPCHealth>().health.Current();
-                    if (enemyHealth < lowestHealth)
+                case WhoToTarget.Strongest:
+
+                    float largestHealth = 0;
+                    foreach (GameObject enemy in enemies)
                     {
-                        lowestHealth = enemyHealth;
-                        tempTarget = enemy.transform;
+                        if (playerPrefered && enemy.tag == "Player")
+                        {
+                            tempTarget = enemy.transform;
+                            break;
+                        }
+
+                        float enemyHealth = enemy.GetComponent<NPCHealth>().health.Current();
+                        if (enemyHealth > largestHealth)
+                        {
+                            largestHealth = enemyHealth;
+                            tempTarget = enemy.transform;
+                        }
                     }
-                }
-                Target = tempTarget;
+                    Target = tempTarget;
+                    break;
+
+                default:
+
+                    float lowestHealth = Mathf.Infinity;
+                    foreach (GameObject enemy in enemies)
+                    {
+                        if (playerPrefered && enemy.tag == "Player")
+                        {
+                            tempTarget = enemy.transform;
+                            break;
+                        }
+
+                        float enemyHealth = enemy.GetComponent<NPCHealth>().health.Current();
+                        if (enemyHealth < lowestHealth)
+                        {
+                            lowestHealth = enemyHealth;
+                            tempTarget = enemy.transform;
+                        }
+                    }
+                    Target = tempTarget;
+
+                    break;
             }
+            
             targetResetTimer = Time.time + cooldown;
         }
     }

@@ -41,7 +41,7 @@ public class NPCGraphicsBase : MonoBehaviour
 
     public void CreateUndead()
     {
-        Debug.Log(undeadPrefab);
+        Debug.Log(this.gameObject + " is going to be a " + undeadPrefab);
         Vector3 pos = rezPoint.transform.position;
         GameObject undead = Instantiate(undeadPrefab, pos, Quaternion.identity);
     }

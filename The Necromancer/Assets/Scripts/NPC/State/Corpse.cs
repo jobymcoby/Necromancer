@@ -31,6 +31,7 @@ public class Corpse : IState
 
         // Stop movement, remove collisions
         rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+        feet.GetComponent<Collider2D>().enabled = false;
 
         if (gameObject.tag == "Enemy")
         {
@@ -51,7 +52,6 @@ public class Corpse : IState
 
         // hurtboxes no longer hit the gameobject
         hitBox.isTrigger = true;
-        feet.GetComponent<DynamicTrigger>().enabled = false;
     }
 
     private void TurnToDust()
@@ -62,10 +62,8 @@ public class Corpse : IState
 
         // hurtboxes no longer hit the gameobject
         hitBox.isTrigger = true;
-        feet.GetComponent<DynamicTrigger>().enabled = false;
 
         // Turn to dust and remove gameobject
-
     }
 
     public void Tick() { }
