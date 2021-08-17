@@ -17,5 +17,6 @@ public class NPCFeet : MonoBehaviour
     {
         col.enabled = false;
         dgo.DoUpdateGraphs();
+        AstarPath.active.FlushGraphUpdates();
     }
 }

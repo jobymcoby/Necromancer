@@ -48,7 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMethod: 2
   playerPrefered: 0
-  direction: {x: 0, y: 0}
+  Target: {fileID: 0}
+  TargetName: 
 --- !u!58 &6023772624666832640
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -64,7 +65,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 9.97
+  m_Radius: 10
 --- !u!114 &2316627363023661809
 MonoBehaviour:
   m_ObjectHideFlags: 0

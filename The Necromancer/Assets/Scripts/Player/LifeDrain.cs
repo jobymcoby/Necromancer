@@ -27,6 +27,7 @@ public class LifeDrain : DynamicTriggerListener
     // Triggers get the gameobjects to deal damage to
     public override void OnDynamicTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision.gameObject.tag);
         try
         {
             bool aggroVal = player.aggressionMatrix.CheckAggression(collision.gameObject.tag);

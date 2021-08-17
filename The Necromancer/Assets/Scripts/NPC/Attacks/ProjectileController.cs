@@ -17,7 +17,6 @@ public class ProjectileController : MonoBehaviour
         if (collision.gameObject.tag == "Undead")
         {
             NPCHealth enemy = collision.gameObject.GetComponentInChildren<NPCHealth>();
-            Debug.Log(collision.gameObject);
             enemy?.Damage(damage);
         }
 

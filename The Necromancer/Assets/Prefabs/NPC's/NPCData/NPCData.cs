@@ -21,4 +21,9 @@ public class NPCData : ScriptableObject
 
     public NPCAttackData attack1;
 
+    // Weigts for pathfinding
+    public float pathWeight = 2;
+    public float cohesionWeight = 1;
+    public float alignWeight = 1;
+    public float avoidWeight = 4;
 }

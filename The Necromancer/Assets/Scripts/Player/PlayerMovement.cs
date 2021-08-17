@@ -10,12 +10,14 @@ public class PlayerMovement : MonoBehaviour
     #region Movement (WASD)
     [SerializeField] private float moveSpeed = 5f;
     public Rigidbody2D rb;
+    private ControllerBase pc;
     private Vector2 movement;
     #endregion
 
     private void Awake()
     {
         rb = GetComponentInParent<Rigidbody2D>();
+        pc = GetComponentInParent<ControllerBase>();
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
         mousePos.Normalize();
+        pc.facingDirection = mousePos;
         anim.SetFloat("MouseX", mousePos.x);
         anim.SetFloat("MouseY", mousePos.y);
     }

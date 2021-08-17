@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40869bbc7ac61da4b96a557d95f225f2, type: 3}
-  m_Name: Arrow Ranged Attack
+  m_Name: New NPC Attack Stats
   m_EditorClassIdentifier: 
-  attackRange: 7
-  attackDamage: 2
-  projectileForce: 1.7
+  attackRange: 0
+  attackDamage: 0
+  projectileForce: 0

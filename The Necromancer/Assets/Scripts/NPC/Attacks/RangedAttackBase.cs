@@ -6,6 +6,7 @@ public class RangedAttackBase : MonoBehaviour, IAttack
 {
     public GameObject projectilePrefab;
     public GameObject firePos;
+    public bool attacking = true;
 
     private NPCController npc;
     private float projectileMagnitude;
@@ -16,8 +17,8 @@ public class RangedAttackBase : MonoBehaviour, IAttack
     {
         npc = GetComponentInParent<NPCController>();
 
-        attackDamage = npc.npcData.attack1.attackDamage;
-        projectileMagnitude = npc.npcData.attack1.projectileForce;
+        attackDamage = npc.npcData.attack1.damage;
+        projectileMagnitude = npc.npcData.attack1.force;
     } 
 
     // Called from an animation event when the character looks like they are firing
@@ -38,4 +39,15 @@ public class RangedAttackBase : MonoBehaviour, IAttack
         rb.AddForce(projectileDirection * projectileMagnitude, ForceMode2D.Impulse);
     }
 
+    public void StartAttack()
+    {
+        // Allow npc to switch states when attacking is false
+        attacking = true;
+    }
+
+    public void Reload()
+    {
+        // Lock the attack state while this is true
+        attacking = false;
+    }
 }

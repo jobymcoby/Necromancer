@@ -8,14 +8,14 @@ public class NPCHealth : MonoBehaviour, IDamagable
     public HealthBar healthBar;
     private NPCData npcData;
 
-    private void Awake()
+    public void Startup(float maxHealth)
     {
-        npcData = GetComponentInParent<NPCController>().npcData;
+        health = new HealthSystem(maxHealth);
+        
     }
-    
-    void Start()
+
+    public void HealthBar()
     {
-        health = new HealthSystem(npcData.maxHealth);
         healthBar.Setup(health);
     }
 

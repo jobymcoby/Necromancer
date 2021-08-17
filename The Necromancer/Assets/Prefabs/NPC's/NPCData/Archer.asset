@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Archer
   maxHealth: 12
-  moveSpeed: 4
+  moveSpeed: 8
   holdTime: 3
-  detectionRange: 15
+  detectionRange: 20
   detectionRate: 0.3
   animator: {fileID: 9100000, guid: 2f1562074841cb74499c002ad56cf9f1, type: 2}
-  attack1: {fileID: 11400000, guid: 7e43f54c8fc6e1e4e93f002ff81f2161, type: 2}
+  attack1: {fileID: 11400000, guid: 1b74fb07a83320141977b93da1c8eb9f, type: 2}
+  pathWeight: 5
+  cohesionWeight: 4
+  alignWeight: 2
+  avoidWeight: 4

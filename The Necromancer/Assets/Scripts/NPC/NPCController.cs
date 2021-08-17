@@ -4,83 +4,44 @@ using UnityEngine;
 using System;
 using Pathfinding;
 
-public class NPCController : MonoBehaviour
+public class NPCController : ControllerBase
 {
-    public NPCData npcData;
+    public float attackRange;
     public NPCHealth npcHealth;
-    public Vector2 facingDirection = Vector2.zero;
     public NPCTargeting targeter;
+    protected NPCGraphicsBase npcGFX;
     public string currentState;
 
-    [SerializeField] private GameObject body;
-    [SerializeField] private GameObject feet;
+    [SerializeField] protected GameObject body;
+    [SerializeField] protected GameObject feet;
 
     // make trigger
     public delegate void UndeathHappens(int undeadMode,GameObject undead);
     public event UndeathHappens ResurrectAnimation;
 
-    private NPCGraphicsBase npcGFX;
 
-    private Rigidbody2D rb;
-    private Collider2D hitBox;
-    private StateMachine stateMachine;
-    private IAttack attackAction;
+    protected Rigidbody2D rb;
+    protected Collider2D hitBox;
+    protected StateMachine stateMachine;
+    protected Component attackComp;
     public AggressionMatrix aggressionMatrix;
 
-    private void Awake()
+    protected virtual void Awake()
     {
+        // Used to check if other entities has and enemy or ally tag
+        aggressionMatrix = new AggressionMatrix(this.tag);
+
         #region Access components that are affected by the state
         rb = GetComponent<Rigidbody2D>(); 
         hitBox = body.GetComponent<Collider2D>();
         npcHealth = body.GetComponent<NPCHealth>();
+        npcHealth.Startup(npcData.maxHealth);
+        npcHealth.HealthBar();
         targeter = GetComponentInChildren<NPCTargeting>();
         npcGFX = GetComponentInChildren<NPCGraphicsBase>();
-
-        Component attackComp = gameObject.GetComponentInChildren(typeof(IAttack));
-        attackAction = attackComp as IAttack;
-        float attackRangeSqr = Mathf.Pow(npcData.attack1.attackRange, 2f);
-
-        aggressionMatrix = new AggressionMatrix(this.tag);
+        attackRange = npcData.attack1.outerRange;
+        attackComp = gameObject.GetComponentInChildren(typeof(IAttack));
         #endregion
-
-        #region State Machine Setup
-        // States
-        stateMachine = new StateMachine();
-        var idle = new Idle(this, rb);
-        var move = new MoveToPosition(this, rb, npcData, feet);
-        var attack = new Attack(this, rb, attackAction);
-        var corpse = new Corpse(gameObject, rb, hitBox, body, feet);
-
-        // State transition conditions
-        Func<bool> OnTarget() => () => targeter.Target != null;                         // When the npc finds a target                         
-        Func<bool> OffTarget() => () => !OnTarget().Invoke();                           // When the npc loses a target
-        Func<bool> OnDied() => () => npcHealth.health.Current() == 0;                   // NPC health is below zero,
-        Func<bool> InRange() => () => targeter.Distance.sqrMagnitude <= attackRangeSqr; // Target is within attack range
-        Func<bool> NewTarget() => () => !InRange().Invoke() && OnTarget().Invoke();     // Target is not in range but instantiated
-        // Func<bool> InCoolDown() => () => !cooldown up.
-
-
-        // Helper for adding state  machine transitions
-        void At(IState from, IState to, Func<bool> condition) => stateMachine.AddTransition(from, to, condition);
-        
-        // State Transitions
-        At(idle, move, OnTarget());                         // When idling, move when you have a target
-        At(move, attack, InRange());                        // When moving to target, attack when you are in range
-        At(attack, move, NewTarget());                      // When attacking, and target is out of range, move
-        At(attack, idle, OffTarget());                      // When attacking and no targets, idle
-        At(move, idle, OffTarget());                        // When moving and no targets, idle
-        stateMachine.AddAnyTransition(corpse, OnDied());    // Anytime health is below 0, die
-
-        // Set first state to alive
-        stateMachine.SetState(idle);
-        #endregion
-
-        // Connect logic to Graphics here
-        // These are sent by the state machine to the graphics script
-        attack.AttackAnimation += npcGFX.AttackSwitch;
-        corpse.DeathAnimation += npcGFX.Die;
-        ResurrectAnimation += npcGFX.Resurrect;
-
     }
 
     private void Update()
@@ -94,6 +55,31 @@ public class NPCController : MonoBehaviour
     private void FixedUpdate()
     {
         stateMachine.FixedTick();
+    }
+
+    public void Move(Vector2 direction, Rigidbody2D rb, NPCData stats, float force = 1, ForceMode2D mode = ForceMode2D.Force)
+    {
+        // not really sure what going on but this averages the flocking 
+        Vector2 velocity = direction * stats.moveSpeed;
+
+        if (force == 0 || velocity.magnitude == 0)
+            return;
+
+        velocity = velocity + velocity.normalized * 0.2f * rb.drag;
+
+        //force = 1 => need 1 s to reach velocity (if mass is 1) => force can be max 1 / Time.fixedDeltaTime
+        force = Mathf.Clamp(force, -rb.mass / Time.fixedDeltaTime, rb.mass / Time.fixedDeltaTime);
+
+        //dot product is a projection from rhs to lhs with a length of result / lhs.magnitude https://www.youtube.com/watch?v=h0NJK4mEIJU
+        if (rb.velocity.magnitude == 0)
+        {
+            rb.AddForce(velocity * force, mode);
+        }
+        else
+        {
+            var velocityProjectedToTarget = (velocity.normalized * Vector2.Dot(velocity, rb.velocity) / velocity.magnitude);
+            rb.AddForce((velocity - velocityProjectedToTarget) * force, mode);
+        }
     }
 
     public void Resurrect(int undeadMode, GameObject undeadPrefab)
@@ -110,4 +96,3 @@ public class NPCController : MonoBehaviour
         if (this != null) rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
-

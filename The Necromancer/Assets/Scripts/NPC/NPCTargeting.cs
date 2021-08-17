@@ -29,8 +29,10 @@ public class NPCTargeting : DynamicTriggerListener
     #endregion
 
     public Transform Target;
+    public string TargetName;
     private float targetResetTimer;
-    private float SquareAvoidanceRadius = 4.2f;
+
+    private float SquareAvoidanceRadius = 2f;
 
     public Vector2 Distance
     {
@@ -59,20 +61,24 @@ public class NPCTargeting : DynamicTriggerListener
 
     public override void OnDynamicTriggerEnter2D(Collider2D collision)
     {
-        // Debug.Log("This: " + transform.parent + " found: " + collision.gameObject.name);
-        Debug.Log(aggressionMatrix.CheckAggression(collision.gameObject.tag));
         GameObject temp = collision.gameObject;
 
         // if the object has a tag that make me angry add them to the enemy list
         if (aggressionMatrix.CheckAggression(collision.gameObject.tag))
+        {
+            Debug.Log("This: " + transform.parent + " found: " + collision.gameObject.name);
             enemies.Add(temp);
-        else
+        }
+
+        else if (collision.gameObject)
+        {
             allies.Add(temp);
+        }
     }
 
     public override void OnDynamicTriggerExit2D(Collider2D collision)
     {
-        // Debug.Log("This: " + transform.parent + " lost: " + collision.gameObject.name);
+        Debug.Log("This: " + transform.parent + " lost: " + collision.gameObject.name);
 
         // if is to make sure noe errors if they died and cant get removed
         if (collision.gameObject != null)
@@ -83,15 +89,24 @@ public class NPCTargeting : DynamicTriggerListener
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        // Display Attack range
+        SquareAvoidanceRadius = .8f;
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, Mathf.Sqrt(SquareAvoidanceRadius));
+    }
+
+    #region Flocking
     public Vector2 AlignAllies()
     {
         Vector2 alignMove = Vector2.zero;
-
         if (allies.Count == 0)
             return alignMove;
 
+        // Player should be included
         foreach (GameObject ally in allies)
-            alignMove += ally.GetComponentInParent<NPCController>().facingDirection;
+            alignMove += ally.GetComponentInParent<ControllerBase>().facingDirection;
 
         alignMove /= allies.Count;
         return alignMove;
@@ -100,7 +115,6 @@ public class NPCTargeting : DynamicTriggerListener
     public Vector2 CohesionAllies(Transform agent)
     {
         Vector2 cohesionMove = Vector2.zero;
-
         if (allies.Count == 0)
             return cohesionMove;
 
@@ -116,7 +130,6 @@ public class NPCTargeting : DynamicTriggerListener
     public Vector2 AvoidAllies(Transform agent)
     {
         Vector2 avoidMove = Vector2.zero;
-
         if (allies.Count == 0)
             return avoidMove;
 
@@ -136,8 +149,9 @@ public class NPCTargeting : DynamicTriggerListener
 
         return avoidMove;
     }
+    #endregion
 
-    public void CreatePath()
+    public void CreatePath(Vector3 targetPosition)
     {
         // Create a path on a fixed interval
         if (Time.time >= pathResetTimer)
@@ -146,7 +160,7 @@ public class NPCTargeting : DynamicTriggerListener
             if (seeker.IsDone())
             {
                 // The path is started by the delegate OnPathComplete
-                seeker.StartPath((Vector2)transform.position, Target.position, OnPathComplete);
+                seeker.StartPath(transform.position, targetPosition, OnPathComplete);
                 currentWaypoint = 0;
             }
             // Reset Cooldown 
@@ -201,10 +215,14 @@ public class NPCTargeting : DynamicTriggerListener
     public void FindTarget(float cooldown)
     {
         Transform tempTarget = null;
-        if (enemies.Count == 0) Target = tempTarget;
+        if (enemies.Count == 0)
+        {
+            Target = tempTarget;
+            TargetName = null;
+        }
 
         // Cool down loop
-        if (Time.time >= targetResetTimer)
+        else if (Time.time >= targetResetTimer)
         {
             // Switch 3 way to find a taget, usually closest or player prefered
             switch (targetMethod)
@@ -230,6 +248,7 @@ public class NPCTargeting : DynamicTriggerListener
                         }
                     }
                     Target = tempTarget;
+                    TargetName = tempTarget.transform.root.gameObject.name;
                     break;
 
                 case WhoToTarget.Strongest:
@@ -251,6 +270,7 @@ public class NPCTargeting : DynamicTriggerListener
                         }
                     }
                     Target = tempTarget;
+                    TargetName = tempTarget.transform.root.gameObject.name;
                     break;
 
                 default:
@@ -272,7 +292,7 @@ public class NPCTargeting : DynamicTriggerListener
                         }
                     }
                     Target = tempTarget;
-
+                    TargetName = tempTarget.transform.root.gameObject.name;
                     break;
             }
             

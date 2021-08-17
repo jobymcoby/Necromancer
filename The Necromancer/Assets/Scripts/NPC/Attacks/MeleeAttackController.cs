@@ -6,6 +6,8 @@ using System.Linq;
 
 public class MeleeAttackController : DynamicTriggerListener, IAttack
 {
+    // Rename to MeleeAttackBase
+
     private float attackRange = .9f;
     private float attackDamage = .25f;
     private NPCController npc;
@@ -20,8 +22,8 @@ public class MeleeAttackController : DynamicTriggerListener, IAttack
     {
 
         npc = GetComponentInParent<NPCController>();
-        attackRange = npc.npcData.attack1.attackRange;
-        attackDamage = npc.npcData.attack1.attackDamage;
+        attackRange = npc.npcData.attack1.innerRange;
+        attackDamage = npc.npcData.attack1.damage;
     }
 
     public override void OnDynamicTriggerEnter2D(Collider2D collision)

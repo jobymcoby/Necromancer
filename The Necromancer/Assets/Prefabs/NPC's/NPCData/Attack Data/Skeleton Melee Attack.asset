@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 0.9
   attackDamage: 0.25
-  projectileForce: 0
+  attackRanged1: 0
+  attackRanged2: 0
+  projectileForce: 1.2

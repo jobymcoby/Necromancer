@@ -176,8 +176,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6391342349717603644}
-  - component: {fileID: 6391342349717603647}
   - component: {fileID: 7690538275067149038}
+  - component: {fileID: 313170864092587549}
   m_Layer: 14
   m_Name: Humanoid
   m_TagString: Undead
@@ -202,25 +202,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6391342349717603647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6391342349717603646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61d640b4f0c04b546a373d994befceec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcData: {fileID: 11400000, guid: a5a7e8a744048074e9b93ff4f124901f, type: 2}
-  npcHealth: {fileID: 0}
-  facingDirection: {x: 0, y: 0}
-  targeter: {fileID: 0}
-  currentState: 
-  body: {fileID: 1243484893886865874}
-  feet: {fileID: 6391342351107956491}
 --- !u!50 &7690538275067149038
 Rigidbody2D:
   serializedVersion: 4
@@ -242,6 +223,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &313170864092587549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6391342349717603646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d205916b30764d74097c258bfa180121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  facingDirection: {x: 0, y: 0}
+  npcData: {fileID: 11400000, guid: a5a7e8a744048074e9b93ff4f124901f, type: 2}
+  npcHealth: {fileID: 0}
+  targeter: {fileID: 0}
+  currentState: 
+  body: {fileID: 1243484893886865874}
+  feet: {fileID: 6391342351107956491}
 --- !u!1 &6391342350340545029
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortOrderBase: 50000
-  offset: 0
+  offset: -5
   canMove: 1
 --- !u!1 &6391342351107956491
 GameObject:
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  uniqueID: 8057886610464210283
+  uniqueID: 4400582102112047534
   updateError: 0.5
   checkTime: 0.2
 --- !u!114 &7185124992318116630
@@ -649,7 +649,7 @@ PrefabInstance:
     - target: {fileID: 2935926259180193736, guid: c0ff2d54ec37a614da34dcaf5035c4a1,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0ff2d54ec37a614da34dcaf5035c4a1, type: 3}

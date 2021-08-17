@@ -14,6 +14,7 @@ public class AggressionMatrix
         new AggressionValue("Undead", "Enemy", true),
         new AggressionValue("Undead", "Player", false),
         new AggressionValue("Undead", "Undead", false),
+        new AggressionValue("Player", "Plant", true)
     };
 
     private Dictionary<string,bool> aggression = new Dictionary<string, bool>();

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerController : MonoBehaviour, IDamagable
+public class PlayerController : ControllerBase, IDamagable
 {
     public Camera cam;
     public Ray clickRay;
@@ -101,6 +101,8 @@ public class PlayerController : MonoBehaviour, IDamagable
             lifeDrainCircle.SetActive(false);
             lifeDrainAttackTimer = Time.time + lifeDrainCoolDown;
         }
+
+        // Test button for Health bar and healing rates
          if (Input.GetKeyDown(KeyCode.F))
         {
             health.Damage(1);
