@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2478974323280869675
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1290144563483913633, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3776438634599986539, guid: abb629e3bb0d8ae4fbcb1424ef8c0027,
+        type: 3}
+    - target: {fileID: 5815505514363359845, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: m_Name
+      value: GrassTileDiagonalBottomLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815505514363359850, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815505514363359850, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815505514363359850, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815505514363359850, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815505514363359850, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815505514363359850, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815505514363359850, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815505514363359850, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815505514363359850, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815505514363359850, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815505514363359850, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971719424793001969, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: DeadGrass.Array.data[0]
+      value: 
+      objectReference: {fileID: -3776438634599986539, guid: abb629e3bb0d8ae4fbcb1424ef8c0027,
+        type: 3}
+    - target: {fileID: 5971719424793001969, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: DeadGrass.Array.data[1]
+      value: 
+      objectReference: {fileID: -3652480139537532186, guid: abb629e3bb0d8ae4fbcb1424ef8c0027,
+        type: 3}
+    - target: {fileID: 5971719424793001969, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: DeadGrass.Array.data[2]
+      value: 
+      objectReference: {fileID: -144072389167786129, guid: abb629e3bb0d8ae4fbcb1424ef8c0027,
+        type: 3}
+    - target: {fileID: 5971719424793001969, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: DeadGrass.Array.data[3]
+      value: 
+      objectReference: {fileID: -3959217559145121, guid: abb629e3bb0d8ae4fbcb1424ef8c0027,
+        type: 3}
+    - target: {fileID: 5971719424793001969, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: LiveGrass.Array.data[0]
+      value: 
+      objectReference: {fileID: 539780008286616165, guid: fc1d723db186432428b448550fb73e46,
+        type: 3}
+    - target: {fileID: 5971719424793001969, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: LiveGrass.Array.data[1]
+      value: 
+      objectReference: {fileID: -8078311287947749449, guid: fc1d723db186432428b448550fb73e46,
+        type: 3}
+    - target: {fileID: 5971719424793001969, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: LiveGrass.Array.data[2]
+      value: 
+      objectReference: {fileID: 5692833992299779544, guid: fc1d723db186432428b448550fb73e46,
+        type: 3}
+    - target: {fileID: 5971719424793001969, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: LiveGrass.Array.data[3]
+      value: 
+      objectReference: {fileID: 5271267419279709806, guid: fc1d723db186432428b448550fb73e46,
+        type: 3}
+    - target: {fileID: 7346183841769329102, guid: 78352cff436d57d4692c673bb15ec8ee,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 539780008286616165, guid: fc1d723db186432428b448550fb73e46,
+        type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 78352cff436d57d4692c673bb15ec8ee, type: 3}

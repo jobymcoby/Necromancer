@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a048c882511b84aacb2d00b4be5ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  facingDirection: {x: 0, y: 0}
   npcData: {fileID: 11400000, guid: 567c8ff5269adca4ebbc7f27357bbd1c, type: 2}
+  facingDirection: {x: 0, y: 0}
+  attackRange: 0
   npcHealth: {fileID: 0}
   targeter: {fileID: 0}
   currentState: 
@@ -34,6 +35,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6217777126937445298, guid: e3c02e3232a8bb14abc396e2f0359804,
     type: 3}
   firePos: {fileID: 8432164900507813270}
+  attacking: 1
 --- !u!1 &3677117665196623891
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,6 +235,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -79092769183885538, guid: d3ceb24dc9bff1542b9d590cdec5a8dc,
         type: 3}
+    - target: {fileID: 6391342350340545024, guid: 513553a6861be8e4993822c322b89f95,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6391342350340545027, guid: 513553a6861be8e4993822c322b89f95,
         type: 3}
       propertyPath: m_Controller
@@ -246,7 +253,7 @@ PrefabInstance:
     - target: {fileID: 6391342350340545054, guid: 513553a6861be8e4993822c322b89f95,
         type: 3}
       propertyPath: offset
-      value: -10
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 6391342351107956488, guid: 513553a6861be8e4993822c322b89f95,
         type: 3}
@@ -292,7 +299,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 28450405b512f4147ba23d269e334620, type: 2}
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 8073860537839888992, guid: 513553a6861be8e4993822c322b89f95,
         type: 3}
       propertyPath: m_Layer

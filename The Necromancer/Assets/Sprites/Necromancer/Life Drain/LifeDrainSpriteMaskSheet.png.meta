@@ -1,0 +1,900 @@
+fileFormatVersion: 2
+guid: 1d62b09a031ee5143b499d9b76d4324d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7296708979885031147
+    second: LifeDrainSpriteMaskSheet_0
+  - first:
+      213: 339671725561436117
+    second: LifeDrainSpriteMaskSheet_1
+  - first:
+      213: 1332540179973794571
+    second: LifeDrainSpriteMaskSheet_2
+  - first:
+      213: -1338119459553174452
+    second: LifeDrainSpriteMaskSheet_3
+  - first:
+      213: -2681786107796610782
+    second: LifeDrainSpriteMaskSheet_4
+  - first:
+      213: 2456879028216536759
+    second: LifeDrainSpriteMaskSheet_5
+  - first:
+      213: 334710664218091499
+    second: LifeDrainSpriteMaskSheet_6
+  - first:
+      213: 7981318949346254463
+    second: LifeDrainSpriteMaskSheet_7
+  - first:
+      213: 1889277015064699534
+    second: LifeDrainSpriteMaskSheet_8
+  - first:
+      213: 1564590705436249175
+    second: LifeDrainSpriteMaskSheet_9
+  - first:
+      213: -7576186654837037580
+    second: LifeDrainSpriteMaskSheet_10
+  - first:
+      213: 2622007538284590393
+    second: LifeDrainSpriteMaskSheet_11
+  - first:
+      213: -3598137286508221215
+    second: LifeDrainSpriteMaskSheet_12
+  - first:
+      213: -1425841191421857198
+    second: LifeDrainSpriteMaskSheet_13
+  - first:
+      213: -8074807635974778853
+    second: LifeDrainSpriteMaskSheet_14
+  - first:
+      213: -3897501092039023729
+    second: LifeDrainSpriteMaskSheet_15
+  - first:
+      213: 3153018460343354838
+    second: LifeDrainSpriteMaskSheet_16
+  - first:
+      213: -5828515610137515217
+    second: LifeDrainSpriteMaskSheet_17
+  - first:
+      213: 4229795982010301494
+    second: LifeDrainSpriteMaskSheet_18
+  - first:
+      213: -6395812234991041131
+    second: LifeDrainSpriteMaskSheet_19
+  - first:
+      213: 8337972554148965241
+    second: LifeDrainSpriteMaskSheet_20
+  - first:
+      213: 2474099208642599568
+    second: LifeDrainSpriteMaskSheet_21
+  - first:
+      213: 6285856774407237060
+    second: LifeDrainSpriteMaskSheet_22
+  - first:
+      213: 6035000214245427066
+    second: LifeDrainSpriteMaskSheet_23
+  - first:
+      213: -1278680803880386368
+    second: LifeDrainSpriteMaskSheet_24
+  - first:
+      213: -7319988082364324582
+    second: LifeDrainSpriteMaskSheet_25
+  - first:
+      213: -1129043779621779322
+    second: LifeDrainSpriteMaskSheet_26
+  - first:
+      213: 74994342441344282
+    second: LifeDrainSpriteMaskSheet_27
+  - first:
+      213: 2857259757562411718
+    second: LifeDrainSpriteMaskSheet_28
+  - first:
+      213: 8458074904718748344
+    second: LifeDrainSpriteMaskSheet_29
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Lumin
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 197
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bee3377582e134560800000000000000
+      internalID: 7296708979885031147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_1
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 197
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d7555e72a1c6b400800000000000000
+      internalID: 339671725561436117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_2
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 197
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0be54ccb322e7210800000000000000
+      internalID: 1332540179973794571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_3
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 197
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4c9b42f07b0e6de0800000000000000
+      internalID: -1338119459553174452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_4
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 197
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 221a4316eb168cad0800000000000000
+      internalID: -2681786107796610782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_5
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 197
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be14f48576981220800000000000000
+      internalID: 2456879028216536759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_6
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 197
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bef1143639125a400800000000000000
+      internalID: 334710664218091499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_7
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 197
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7e90ee2c4753ce60800000000000000
+      internalID: 7981318949346254463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 138
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e82ed357f6f083a10800000000000000
+      internalID: 1889277015064699534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_9
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 138
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75cc76005fa86b510800000000000000
+      internalID: 1564590705436249175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_10
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 138
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f52266b06afbd690800000000000000
+      internalID: -7576186654837037580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_11
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 138
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93579ddc6fd336420800000000000000
+      internalID: 2622007538284590393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_12
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 138
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ece690a339d01ec0800000000000000
+      internalID: -3598137286508221215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_13
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 138
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2523e27adf4663ce0800000000000000
+      internalID: -1425841191421857198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_14
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 138
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b109c1cbc3580ff80800000000000000
+      internalID: -8074807635974778853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_15
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 138
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f832159186b49e9c0800000000000000
+      internalID: -3897501092039023729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 79
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d5c3039595c1cb20800000000000000
+      internalID: 3153018460343354838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_17
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 79
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2b2fe1fee3fc1fa0800000000000000
+      internalID: -5828515610137515217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_18
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 79
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63c3914090143ba30800000000000000
+      internalID: 4229795982010301494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_19
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 79
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5950343a8a28d37a0800000000000000
+      internalID: -6395812234991041131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_20
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 79
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97b610d8cdd66b370800000000000000
+      internalID: 8337972554148965241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_21
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 79
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09a97363f14c55220800000000000000
+      internalID: 2474099208642599568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_22
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 79
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cda683be69db3750800000000000000
+      internalID: 6285856774407237060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_23
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 79
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a77418558b0a0c350800000000000000
+      internalID: 6035000214245427066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 20
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c049976596314ee0800000000000000
+      internalID: -1278680803880386368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_25
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 20
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a15e49e3f9d2a6a90800000000000000
+      internalID: -7319988082364324582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_26
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 20
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68887c31aa4d450f0800000000000000
+      internalID: -1129043779621779322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_27
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 20
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1d516505fe6a0100800000000000000
+      internalID: 74994342441344282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_28
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 20
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cab6807c9607a720800000000000000
+      internalID: 2857259757562411718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LifeDrainSpriteMaskSheet_29
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 20
+        width: 59
+        height: 59
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.4915254}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ba2863205e116570800000000000000
+      internalID: 8458074904718748344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

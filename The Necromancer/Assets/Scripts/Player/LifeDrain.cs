@@ -81,7 +81,7 @@ public class LifeDrain : DynamicTriggerListener
 
     private void OnEnable()
     {
-        InvokeRepeating("killGrass", 0, 0.1f);
+        InvokeRepeating("killGrass", 0, .2f);
     }
 
     private void OnDisable()

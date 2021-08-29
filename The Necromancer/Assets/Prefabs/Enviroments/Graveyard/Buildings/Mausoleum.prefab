@@ -45,7 +45,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,7 +87,7 @@ PrefabInstance:
     - target: {fileID: 5893010773074836992, guid: 4f732e30d5f22dd49bb6020708b60269,
         type: 3}
       propertyPath: m_Name
-      value: Obstacle Prefab Variant
+      value: Mausoleum
       objectReference: {fileID: 0}
     - target: {fileID: 8143113679608116078, guid: 4f732e30d5f22dd49bb6020708b60269,
         type: 3}

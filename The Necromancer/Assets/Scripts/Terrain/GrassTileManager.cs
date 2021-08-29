@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using System.Linq;
+
 
 public class GrassTileManager : MonoBehaviour
 {
@@ -15,21 +15,41 @@ public class GrassTileManager : MonoBehaviour
     public static event DamageDealer DealDamage;
 
     private int TMax = 16;
-    private float spreadSpeed = 0.1f; // Seconds between 1 pixel larger circle is drawn 
+    private float spreadSpeed = 0.2f; // Seconds between 1 pixel larger circle is drawn 
+    private Vector3 mousePosition;
+    private Vector3 lastMousePosition;
+    private Dictionary<float, bool[,]> pixelCircleCache = new Dictionary<float, bool[,]>();
 
     private void Awake()
     {
         tilemap = ground.GetComponent<Tilemap>();
         instance = this;
-    }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.X))
+        for (int r = 2; r <= 30; r++)
         {
-            StartDeathCircle(new Vector3(7.5f, -2.5f, 0f));
+            pixelCircleCache.Add(r, BoxedCircle(r));
         }
     }
+
+    private void FixedUpdate()
+    {
+
+        // Testing
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition = new Vector3(mousePosition.x, mousePosition.y, 0f);
+        if (Input.GetKey(KeyCode.X))
+        {
+            // movement cooldown, wont repeat calls unless the 
+            if (Vector3.Distance(mousePosition, lastMousePosition) >= .06f)
+            {
+                StartDeathCircle(mousePosition);
+            }
+            lastMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            lastMousePosition = new Vector3(mousePosition.x, mousePosition.y, 0f);
+        }
+    }
+
+
     /// <summary>
     /// StartDeathCircle is called when the grass is attacked.
     /// </summary>
@@ -37,14 +57,43 @@ public class GrassTileManager : MonoBehaviour
     /// starts coroutine
     public void StartDeathCircle(Vector3 pos)
     {
+        // get the tile under the position vector
         Vector3Int tileCenter = tilemap.WorldToCell(pos);
         Vector3Int pixelCenter = Vector3Int.RoundToInt((pos - tileCenter) * TMax);
 
-        StartCoroutine(DeathCircle(pixelCenter.x, pixelCenter.y, tileCenter.x, tileCenter.y));
+        StartCoroutine(DeathCircleOld(pixelCenter.x, pixelCenter.y, tileCenter.x, tileCenter.y));
     }
 
+    private IEnumerator DeathCircles(Transform deathPoint)
+    {
+        // get the tile under the position vector
+        Vector3Int tileCenter = tilemap.WorldToCell(deathPoint.position);
+        Vector3Int pixelCenter = Vector3Int.RoundToInt((deathPoint.position - tileCenter) * TMax);
+
+        int slowAtHalf = 2;
+
+        // Create Circle 
+        for (int r = 2; r < 30; r += slowAtHalf)
+        {
+            // Quadratic equation to make spread speed fast when the radius is small and slow when it is big
+            if (r > 20)
+                slowAtHalf = 1;
+            else if (r > 10)
+                slowAtHalf = 2;
+
+            spreadSpeed = .2f;
+
+            // 2D array with true values where a pixel circle should be
+            // CAN BE CACHEd
+            bool[,] circleLayout = pixelCircleCache[r];
+        }
+        yield break;
+    }
+
+
+
     // input is pixel and tile coordinates
-    private IEnumerator DeathCircle(int cpx, int cpy, int ctx, int cty)
+    private IEnumerator DeathCircleOld(int cpx, int cpy, int ctx, int cty)
     {
         // 1 pixel circle initlizers
         int x1 = 0, y1 = 0, x2 = 1, y2 = 1;
@@ -60,10 +109,10 @@ public class GrassTileManager : MonoBehaviour
                 slowAtHalf = 2;
 
             spreadSpeed = .2f;
-                //-0.0016f * (r - 30) * (r - 30) + 1.7f;
-
+          
             // 2D array with true values where a pixel circle should be
-            bool[,] circleLayout = BoxedCircle(r);
+            // CAN BE CACHEd
+            bool[,] circleLayout = pixelCircleCache[r];
 
             // 2D array of 1D array's of color codes  
             bool[,][] tileSet = CircToTileKey(circleLayout, cpx, cpy, TMax, ref x1, ref x2, ref y1, ref y2);
@@ -230,17 +279,46 @@ public class GrassTileManager : MonoBehaviour
         return keySet;
     }
 
+    public bool[,] BoxedCircle(int radius)
+    {
+        // Returns a 2d square matrix with true values where the circle pixels should be.
+
+        // Size is 2r - 1 because there needs to be acenter point.
+        bool[,] layout = new bool[2 * radius - 1, 2 * radius - 1];
+        int x = 0;
+        int y = radius;
+        int p = (5 - radius * 4) / 4;
+
+        CirclePoints(radius, x, y, ref layout);
+        while (x < y)
+        {
+            x++;
+            if (p < 0)
+            {
+                p += 2 * x + 1;
+            }
+            else
+            {
+                y--;
+                p += 2 * (x - y) + 1;
+            }
+            CirclePoints(radius, x, y, ref layout);
+        }
+        return layout;
+    }
+
     private void CirclePoints(int rad, int x, int y, ref bool[,] layout)
     {
+        int center = rad - 1;
         // Sets the cardinal points
         if (x == 0)
         {
             for (int i = -y + 1; i < y; i++)
             {
                 // Set all points on the vertical crossection
-                layout[(rad) - 1, (rad + i) - 1] = true;
+                layout[center, (rad + i) - 1] = true;
                 // Set all points on the horizontal crossection
-                layout[(rad + i) - 1, (rad) - 1] = true;
+                layout[(rad + i) - 1, center] = true;
             }
         }
         // last point
@@ -264,7 +342,6 @@ public class GrassTileManager : MonoBehaviour
 
             for (int i = -y + 1; i < y; i++)
             {
-                // Brute Force neededs clean up
                 layout[(rad + x) - 1, (rad + i) - 1] = true;
                 layout[(rad - x) - 1, (rad + i) - 1] = true;
                 layout[(rad + i) - 1, (rad + x) - 1] = true;
@@ -273,29 +350,39 @@ public class GrassTileManager : MonoBehaviour
         }
     }
 
-    public bool[,] BoxedCircle(int radius)
+    
+    private void CirclePointsOutline(int rad, int x, int y, ref bool[,] layout)
     {
-        // Returns a 2d square matrix with true values where the circle pixel should be.
-        bool[,] layout = new bool[2 * radius - 1, 2 * radius - 1];
-        int x = 0;
-        int y = radius;
-        int p = (5 - radius * 4) / 4;
-
-        CirclePoints(radius, x, y, ref layout);
-        while (x < y)
+        int center = rad - 1;
+        int pointRadius = y - 1;
+        // Sets the cardinal points
+        if (x == 0)
         {
-            x++;
-            if (p < 0)
-            {
-                p += 2 * x + 1;
-            }
-            else
-            {
-                y--;
-                p += 2 * (x - y) + 1;
-            }
-            CirclePoints(radius, x, y, ref layout);
+            layout[center, center + pointRadius] = true;
+            layout[center, center - pointRadius] = true;
+            layout[center + pointRadius, center] = true;
+            layout[center - pointRadius, center] = true;
         }
-        return layout;
+        // last point
+        else if (x == y)
+        {
+            layout[center + x, center + pointRadius] = true;
+            layout[center + x, center - pointRadius] = true;
+            layout[center - x, center + pointRadius] = true;
+            layout[center - x, center - pointRadius] = true;
+
+        }
+        else if (x < y)
+        {
+            layout[center + x, center + pointRadius] = true;
+            layout[center + x, center - pointRadius] = true;
+            layout[center - x, center + pointRadius] = true;
+            layout[center - x, center - pointRadius] = true;
+
+            layout[center + pointRadius, center + x] = true;
+            layout[center + pointRadius, center - x] = true;
+            layout[center - pointRadius, center + x] = true;
+            layout[center - pointRadius, center - x] = true;
+        }
     }
 }

@@ -235,8 +235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d205916b30764d74097c258bfa180121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  facingDirection: {x: 0, y: 0}
   npcData: {fileID: 11400000, guid: a5a7e8a744048074e9b93ff4f124901f, type: 2}
+  facingDirection: {x: 0, y: 0}
+  attackRange: 0
   npcHealth: {fileID: 0}
   targeter: {fileID: 0}
   currentState: 
@@ -312,7 +313,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 28450405b512f4147ba23d269e334620, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
