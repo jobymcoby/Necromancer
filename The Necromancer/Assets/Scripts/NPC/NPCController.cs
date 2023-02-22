@@ -16,7 +16,7 @@ public class NPCController : ControllerBase
     [SerializeField] protected GameObject feet;
 
     // make trigger
-    public delegate void UndeathHappens(int undeadMode,GameObject undead);
+    public delegate void UndeathHappens(int undeadMode, GameObject undead);
     public event UndeathHappens ResurrectAnimation;
 
 

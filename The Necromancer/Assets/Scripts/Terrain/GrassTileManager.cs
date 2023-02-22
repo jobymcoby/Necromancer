@@ -49,7 +49,19 @@ public class GrassTileManager : MonoBehaviour
         }
     }
 
+    private IEnumerator KillPlants()
+    {
+        while (gameObject.activeSelf is true)
+        {
+            // Find the closest pixel cooridante to the mouse and put a mask there. 16 pixels per unit
+            Vector2 pixelPoint = new Vector2(
+                Mathf.Floor(transform.position.x * 16f),
+                Mathf.Floor(transform.position.y * 16f)
+            ) / 16f;
 
+            yield return new WaitForSeconds(.2f);
+        }
+    }
     /// <summary>
     /// StartDeathCircle is called when the grass is attacked.
     /// </summary>

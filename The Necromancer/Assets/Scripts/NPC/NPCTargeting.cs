@@ -49,7 +49,7 @@ public class NPCTargeting : DynamicTriggerListener
     {
         aggressionMatrix = GetComponentInParent<NPCController>().aggressionMatrix;
         detectionRate = GetComponentInParent<NPCController>().npcData.detectionRate;
-        
+
         //Setup Sight trigger
         float detectionRange = GetComponentInParent<NPCController>().npcData.detectionRange;
         range = GetComponent<CircleCollider2D>();
@@ -63,7 +63,7 @@ public class NPCTargeting : DynamicTriggerListener
     {
         GameObject temp = collision.gameObject;
 
-        // if the object has a tag that make me angry add them to the enemy list
+        // if the object has a tag that makes me angry add them to the enemy list
         if (aggressionMatrix.CheckAggression(collision.gameObject.tag))
         {
             Debug.Log("This: " + transform.parent + " found: " + collision.gameObject.name);
@@ -80,7 +80,7 @@ public class NPCTargeting : DynamicTriggerListener
     {
         Debug.Log("This: " + transform.parent + " lost: " + collision.gameObject.name);
 
-        // if is to make sure noe errors if they died and cant get removed
+        // if is to make sure no errors if they died and cant get removed
         if (collision.gameObject != null)
         {
             GameObject temp = collision.gameObject;
@@ -181,33 +181,31 @@ public class NPCTargeting : DynamicTriggerListener
     {
         if (path == null)
             return Vector2.zero;
+
         // When you reach a point move one to the next
-        // Need to handle index out of range exception
         float waypointDistance;
 
         try
         {
             waypointDistance = Vector2.Distance((Vector2)transform.position, path.vectorPath[currentWaypoint]);
-        }
-        catch (ArgumentOutOfRangeException)
-        {
-            currentWaypoint--;
-            waypointDistance = Vector2.Distance((Vector2)transform.position, path.vectorPath[currentWaypoint]);
-        }
 
-        if (waypointDistance < nextWapointDistance)
-        {
-            currentWaypoint++;
-        }
+            if (waypointDistance < nextWapointDistance)
+            {
+                currentWaypoint++;
+            }
 
-        // Get Direction after path creation
-        try
-        {
             return direction = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)transform.position).normalized;
         }
         catch (ArgumentOutOfRangeException)
         {
             currentWaypoint--;
+            waypointDistance = Vector2.Distance((Vector2)transform.position, path.vectorPath[currentWaypoint]);
+
+            if (waypointDistance < nextWapointDistance)
+            {
+                currentWaypoint++;
+            }
+
             return direction = ((Vector2)path.vectorPath[currentWaypoint] - (Vector2)transform.position).normalized;
         }
     }
@@ -238,13 +236,14 @@ public class NPCTargeting : DynamicTriggerListener
                             tempTarget = enemy.transform;
                             break;
                         }
-
-                        Vector2 directionToTarget = enemy.transform.position - gameObject.transform.parent.gameObject.transform.position;
-                        float dSqrToTarget = directionToTarget.sqrMagnitude;
-                        if (dSqrToTarget < closestDistanceSqr)
-                        {
-                            closestDistanceSqr = dSqrToTarget;
-                            tempTarget = enemy.transform;
+                        else { 
+                            Vector2 directionToTarget = enemy.transform.position - gameObject.transform.parent.gameObject.transform.position;
+                            float dSqrToTarget = directionToTarget.sqrMagnitude;
+                            if (dSqrToTarget < closestDistanceSqr)
+                            {
+                                closestDistanceSqr = dSqrToTarget;
+                                tempTarget = enemy.transform;
+                            }
                         }
                     }
                     Target = tempTarget;
@@ -261,13 +260,15 @@ public class NPCTargeting : DynamicTriggerListener
                             tempTarget = enemy.transform;
                             break;
                         }
-
-                        float enemyHealth = enemy.GetComponent<NPCHealth>().health.Current();
-                        if (enemyHealth > largestHealth)
-                        {
-                            largestHealth = enemyHealth;
-                            tempTarget = enemy.transform;
+                        else {
+                            float enemyHealth = enemy.GetComponent<NPCHealth>().health.Current();
+                            if (enemyHealth > largestHealth)
+                            {
+                                largestHealth = enemyHealth;
+                                tempTarget = enemy.transform;
+                            }
                         }
+                        
                     }
                     Target = tempTarget;
                     TargetName = tempTarget.transform.root.gameObject.name;
@@ -283,19 +284,22 @@ public class NPCTargeting : DynamicTriggerListener
                             tempTarget = enemy.transform;
                             break;
                         }
-
-                        float enemyHealth = enemy.GetComponent<NPCHealth>().health.Current();
-                        if (enemyHealth < lowestHealth)
-                        {
-                            lowestHealth = enemyHealth;
-                            tempTarget = enemy.transform;
+                        else {
+                            float enemyHealth = enemy.GetComponent<NPCHealth>().health.Current();
+                            if (enemyHealth < lowestHealth)
+                            {
+                                lowestHealth = enemyHealth;
+                                tempTarget = enemy.transform;
+                            }
                         }
+                        
                     }
                     Target = tempTarget;
                     TargetName = tempTarget.transform.root.gameObject.name;
                     break;
             }
-            
+            Target = tempTarget;
+            TargetName = tempTarget.transform.root.gameObject.name;
             targetResetTimer = Time.time + cooldown;
         }
     }

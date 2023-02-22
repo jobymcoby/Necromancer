@@ -13,6 +13,15 @@ public class PlayerController : ControllerBase, IDamagable
     [SerializeField] private LayerMask clickLayers;
     [SerializeField] private const float maxHealth = 15f;
 
+    #region Input Events
+    public event EventHandler OnLeftClickDown;
+    public event EventHandler OnLeftClickUp;
+    public event EventHandler OnRightClickDown;
+    public event EventHandler OnRightClickUp;
+    public event EventHandler OnSpaceDown;
+    public event EventHandler OnSpaceUp;
+    #endregion
+
 
     #region Arcane Bolt (Left Click)
 
@@ -75,12 +84,29 @@ public class PlayerController : ControllerBase, IDamagable
         if (Input.GetMouseButtonDown(0))
         {
             PrimarySpell();
+            OnLeftClickDown?.Invoke(this, EventArgs.Empty);
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            OnLeftClickUp?.Invoke(this, EventArgs.Empty);
         }
 
         // Right Click Polling (Resurrect/Grasping Hands)
         if (Input.GetMouseButtonDown(1))                
         {
             SecondarySpell();
+            OnRightClickDown?.Invoke(this, EventArgs.Empty);
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            OnRightClickUp?.Invoke(this, EventArgs.Empty);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnSpaceDown?.Invoke(this, EventArgs.Empty);
         }
 
         // Space Button Polling (Life Drain)
@@ -92,7 +118,7 @@ public class PlayerController : ControllerBase, IDamagable
             }
             else
             {
-                // Pressed in cool down
+                // Pressed in cool down, get better scrub
             }
         }
         // Space Button Up (Life Drain Cooldown)
@@ -100,10 +126,11 @@ public class PlayerController : ControllerBase, IDamagable
         {
             lifeDrainCircle.SetActive(false);
             lifeDrainAttackTimer = Time.time + lifeDrainCoolDown;
+            OnSpaceUp?.Invoke(this, EventArgs.Empty);
         }
 
         // Test button for Health bar and healing rates
-         if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             health.Damage(1);
         }

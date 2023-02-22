@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,10 +19,39 @@ public class LifeDrain : DynamicTriggerListener
     private int enemyMultiplier;
     #endregion
 
+    [SerializeField] private GameObject maskPrefab;
+
     void Awake()
     {
         player = GetComponentInParent<PlayerController>();
         enemyMultiplier = 0;
+        gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(KillPlants());
+    }
+
+    private IEnumerator KillPlants()
+    {
+        while (gameObject.activeSelf is true)
+        {
+            // Find the closest pixel cooridante to the mouse and put a mask there. 16 pixels per unit
+            Vector2 pixelPoint = new Vector2(
+                Mathf.Floor(transform.position.x * 16f),
+                Mathf.Floor(transform.position.y * 16f)
+            ) / 16f;
+
+            GameObject circleMask = Instantiate(maskPrefab, transform.position, Quaternion.identity);
+
+            yield return new WaitForSeconds(.1f);
+        }
     }
 
     // Triggers get the gameobjects to deal damage to
@@ -69,24 +99,13 @@ public class LifeDrain : DynamicTriggerListener
     // Damage is dealt every .2 seconds
     private void FixedUpdate()
     {
-        Debug.Log(enemyMultiplier);
         DealDamage?.Invoke(drainSpeed);                      
         player.Heal(drainSpeed * drainConversion * enemyMultiplier);   
     }
 
-    private void killGrass()
-    {
-        GrassTileManager.instance.StartDeathCircle(transform.position);
-    }
-
-    private void OnEnable()
-    {
-        InvokeRepeating("killGrass", 0, .2f);
-    }
-
     private void OnDisable()
     {
-        CancelInvoke();
+        StopCoroutine(KillPlants());
         enemies.Clear();
     }
 }
